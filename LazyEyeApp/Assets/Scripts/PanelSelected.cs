@@ -5,10 +5,10 @@ public class PanelSelected : MonoBehaviour {
     
     private const int rectCount = 9;
     static Vector2 panelHalfDim;        // WARNING: this assumes that all 4 panels are of the same size!!
-    static Vector2 panelQuarterDim;        // WARNING: this assumes that all 4 panels are of the same size!!
+    static Vector2 panelQuarterDim;     // WARNING: this assumes that all 4 panels are of the same size!!
     static float height;
 
-    static Vector2 rectSize = new Vector2(8, 8);
+    static Vector2 rectSize = new Vector2(Screen.width * 0.01f, Screen.width * 0.01f);
     static Texture2D[] rectTexture = new Texture2D[rectCount];
     static GUIStyle[] rectStyle = new GUIStyle[rectCount];
 
@@ -20,7 +20,10 @@ public class PanelSelected : MonoBehaviour {
 
     void Start()
     {
-        //  initialize variables for rectangles drawing        
+        //  resize panel to 0.4 (local scale) of the screen width and height
+        GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width, Screen.height);
+             
+        //  initialize variables for rectangles drawing   
         height = Screen.height;
         panelHalfDim = new Vector2(GetComponent<RectTransform>().rect.width * transform.localScale.x * 0.45f, GetComponent<RectTransform>().rect.height * transform.localScale.y * 0.45f);
         panelQuarterDim = new Vector2(panelHalfDim.x * 0.5f, panelHalfDim.y * 0.5f);
