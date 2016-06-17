@@ -1,0 +1,605 @@
+fileFormatVersion: 2
+guid: 55d1984840ad581498eeb7f17353461d
+timeCreated: 1466131863
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: droid_from_android_0
+    21300002: droid_from_android_1
+    21300004: droid_from_android_2
+    21300006: droid_from_android_3
+    21300008: droid_from_android_4
+    21300010: droid_from_android_5
+    21300012: droid_from_android_6
+    21300014: droid_from_android_7
+    21300016: droid_from_android_8
+    21300018: droid_from_android_9
+    21300020: droid_from_android_10
+    21300022: droid_from_android_11
+    21300024: droid_from_android_12
+    21300026: droid_from_android_13
+    21300028: droid_from_android_14
+    21300030: droid_from_android_15
+    21300032: droid_from_android_16
+    21300034: droid_from_android_17
+    21300036: droid_from_android_18
+    21300038: droid_from_android_19
+    21300040: droid_from_android_20
+    21300042: droid_from_android_21
+    21300044: droid_from_android_22
+    21300046: droid_from_android_23
+    21300048: droid_from_android_24
+    21300050: droid_from_android_25
+    21300052: droid_from_android_26
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: droid_from_android_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 28}
+        - {x: -23, y: 17}
+        - {x: -23, y: -28}
+        - {x: -14, y: -40}
+        - {x: 23, y: -40}
+        - {x: 23, y: 28}
+    - name: droid_from_android_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 640
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: -40}
+        - {x: 23, y: -33}
+        - {x: 23, y: 26}
+        - {x: 11, y: 27}
+        - {x: -14, y: 27}
+        - {x: -23, y: 11}
+        - {x: -23, y: -13}
+        - {x: -22, y: -26}
+        - {x: -12, y: -40}
+        - {x: -6, y: -40}
+        - {x: -2, y: -36}
+        - {x: 4, y: -40}
+    - name: droid_from_android_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 640
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: -35}
+        - {x: 23, y: 26}
+        - {x: 21, y: 27}
+        - {x: -21, y: 27}
+        - {x: -23, y: 15}
+        - {x: -23, y: -37}
+        - {x: -14, y: -40}
+        - {x: -6, y: -40}
+        - {x: -2, y: -36}
+        - {x: 1, y: -40}
+        - {x: 15, y: -40}
+    - name: droid_from_android_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 29}
+        - {x: -27, y: 2}
+        - {x: -27, y: -24}
+        - {x: -16, y: -40}
+        - {x: 17, y: -40}
+        - {x: 28, y: -16}
+        - {x: 28, y: 26}
+        - {x: 11, y: 29}
+    - name: droid_from_android_4
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 560
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 12, y: 29}
+        - {x: -9, y: 29}
+        - {x: -27, y: -4}
+        - {x: -27, y: -24}
+        - {x: -18, y: -40}
+        - {x: 18, y: -40}
+        - {x: 28, y: -18}
+        - {x: 28, y: 25}
+    - name: droid_from_android_5
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 560
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 29}
+        - {x: -10, y: 29}
+        - {x: -27, y: 1}
+        - {x: -27, y: -24}
+        - {x: -14, y: -40}
+        - {x: 14, y: -40}
+        - {x: 28, y: -17}
+        - {x: 28, y: 25}
+    - name: droid_from_android_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6, y: -40}
+        - {x: 22, y: -21}
+        - {x: 22, y: 37}
+        - {x: -22, y: 37}
+        - {x: -26, y: 13}
+        - {x: -26, y: -29}
+        - {x: -19, y: -40}
+        - {x: -13, y: -40}
+        - {x: -7, y: -33}
+        - {x: -5, y: -27}
+        - {x: -4, y: -40}
+    - name: droid_from_android_7
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 480
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -15, y: 40}
+        - {x: -26, y: 14}
+        - {x: -26, y: -25}
+        - {x: -20, y: -40}
+        - {x: 13, y: -40}
+        - {x: 25, y: -28}
+        - {x: 25, y: 40}
+    - name: droid_from_android_8
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 480
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22, y: 37}
+        - {x: -19, y: 37}
+        - {x: -25, y: 18}
+        - {x: -26, y: 4}
+        - {x: -26, y: -20}
+        - {x: -6, y: -40}
+        - {x: 1, y: -40}
+        - {x: 2, y: -32}
+        - {x: 11, y: -40}
+        - {x: 22, y: -40}
+    - name: droid_from_android_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 18, y: 28}
+        - {x: -20, y: 28}
+        - {x: -23, y: 23}
+        - {x: -23, y: -21}
+        - {x: -16, y: -40}
+        - {x: 17, y: -40}
+        - {x: 25, y: -29}
+        - {x: 25, y: -5}
+        - {x: 24, y: 7}
+    - name: droid_from_android_10
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 400
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -25, y: 28}
+        - {x: -25, y: -37}
+        - {x: -24, y: -40}
+        - {x: 23, y: -40}
+        - {x: 28, y: -31}
+        - {x: 28, y: -3}
+        - {x: 22, y: 28}
+    - name: droid_from_android_11
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 400
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -27, y: 28}
+        - {x: -27, y: -27}
+        - {x: -24, y: -40}
+        - {x: 27, y: -40}
+        - {x: 28, y: -37}
+        - {x: 28, y: 13}
+        - {x: 20, y: 28}
+    - name: droid_from_android_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -17, y: 28}
+        - {x: -28, y: 0}
+        - {x: -28, y: -20}
+        - {x: -9, y: -40}
+        - {x: 18, y: -40}
+        - {x: 27, y: -34}
+        - {x: 27, y: 28}
+    - name: droid_from_android_13
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 320
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 28}
+        - {x: -22, y: 24}
+        - {x: -22, y: -21}
+        - {x: -18, y: -40}
+        - {x: 23, y: -40}
+        - {x: 27, y: -27}
+        - {x: 27, y: 19}
+        - {x: 18, y: 28}
+    - name: droid_from_android_14
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 320
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12, y: 27}
+        - {x: -15, y: 25}
+        - {x: -19, y: 10}
+        - {x: -19, y: -18}
+        - {x: -16, y: -39}
+        - {x: -12, y: -40}
+        - {x: 22, y: -40}
+        - {x: 27, y: -19}
+        - {x: 27, y: 20}
+        - {x: 18, y: 27}
+    - name: droid_from_android_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 28}
+        - {x: -27, y: 2}
+        - {x: -27, y: -40}
+        - {x: 22, y: -40}
+        - {x: 22, y: 28}
+    - name: droid_from_android_16
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 240
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 29}
+        - {x: -27, y: 2}
+        - {x: -27, y: -34}
+        - {x: -22, y: -40}
+        - {x: 22, y: -40}
+        - {x: 22, y: 13}
+        - {x: 17, y: 29}
+    - name: droid_from_android_17
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 240
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 31}
+        - {x: -28, y: 22}
+        - {x: -28, y: -28}
+        - {x: -13, y: -40}
+        - {x: 5, y: -40}
+        - {x: 28, y: -28}
+        - {x: 28, y: -6}
+        - {x: 18, y: 31}
+    - name: droid_from_android_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19, y: 40}
+        - {x: -11, y: 40}
+        - {x: -28, y: 21}
+        - {x: -28, y: -14}
+        - {x: -19, y: -40}
+        - {x: 14, y: -40}
+        - {x: 28, y: -27}
+        - {x: 28, y: 24}
+        - {x: 24, y: 39}
+    - name: droid_from_android_19
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 160
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20, y: 40}
+        - {x: -21, y: 30}
+        - {x: -21, y: -37}
+        - {x: 21, y: -37}
+        - {x: 28, y: -23}
+        - {x: 28, y: 32}
+        - {x: 27, y: 40}
+    - name: droid_from_android_20
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 160
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25, y: 40}
+        - {x: -12, y: 40}
+        - {x: -17, y: 37}
+        - {x: -17, y: -35}
+        - {x: -15, y: -40}
+        - {x: 15, y: -40}
+        - {x: 21, y: -35}
+        - {x: 28, y: -18}
+        - {x: 28, y: 30}
+    - name: droid_from_android_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 40}
+        - {x: -27, y: 34}
+        - {x: -27, y: -29}
+        - {x: -21, y: -40}
+        - {x: -18, y: -40}
+        - {x: -10, y: -34}
+        - {x: -7, y: -27}
+        - {x: 6, y: -40}
+        - {x: 14, y: -40}
+        - {x: 20, y: -19}
+        - {x: 20, y: 31}
+        - {x: 18, y: 40}
+    - name: droid_from_android_22
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 80
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 40}
+        - {x: -28, y: 23}
+        - {x: -28, y: -31}
+        - {x: -23, y: -37}
+        - {x: 1, y: -37}
+        - {x: 19, y: -27}
+        - {x: 19, y: 25}
+        - {x: 12, y: 40}
+    - name: droid_from_android_23
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 80
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 40}
+        - {x: -28, y: -40}
+        - {x: -6, y: -40}
+        - {x: 27, y: -18}
+        - {x: 27, y: 6}
+        - {x: 13, y: 40}
+    - name: droid_from_android_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -21, y: 25}
+        - {x: -28, y: 11}
+        - {x: -28, y: -40}
+        - {x: 21, y: -40}
+        - {x: 21, y: 13}
+        - {x: 18, y: 25}
+    - name: droid_from_android_25
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 11, y: 25}
+        - {x: 9, y: 24}
+        - {x: -2, y: 25}
+        - {x: -19, y: 25}
+        - {x: -26, y: 12}
+        - {x: -26, y: -32}
+        - {x: -24, y: -40}
+        - {x: 21, y: -40}
+        - {x: 21, y: 15}
+        - {x: 14, y: 25}
+    - name: droid_from_android_26
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 0
+        width: 56
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 14, y: 26}
+        - {x: -13, y: 26}
+        - {x: -25, y: 7}
+        - {x: -25, y: -40}
+        - {x: 22, y: -40}
+        - {x: 26, y: -14}
+        - {x: 26, y: 17}
+        - {x: 25, y: 18}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
