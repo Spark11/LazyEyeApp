@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ClickPanels : MonoBehaviour {
 
     private string spriteName = "knight";
-
+        
     public Text uiText;
 
     private int correctPanel;
@@ -26,7 +26,8 @@ public class ClickPanels : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         score = 0;
-        uiText.text = score.ToString();        
+        uiText.text = score.ToString();
+        SetBackground();
         correctPanel = Random.Range(0, 4);
         transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();
     }
@@ -40,32 +41,65 @@ public class ClickPanels : MonoBehaviour {
     }
 
 
+    void SetBackground()
+    {
+        GameObject background = GameObject.Find("Background");
+        SpriteRenderer backSR = background.GetComponent<SpriteRenderer>();
+
+        backSR.sprite = Resources.Load<Sprite>(spriteName + "_back");
+        
+        float worldScreenHeight = Camera.main.orthographicSize * 2;
+        float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
+
+        background.transform.localScale = new Vector3(worldScreenWidth / backSR.sprite.bounds.size.x, worldScreenHeight / backSR.sprite.bounds.size.y, 1);
+    }
+
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             spriteName = "knight";
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+            SetBackground();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) { 
             spriteName = "dragon";
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+            SetBackground();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) { 
             spriteName = "princess";
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+            SetBackground();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4)) { 
             spriteName = "alien";
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
+            SetBackground();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5)) { 
             spriteName = "fox";
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
+            SetBackground();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6)) { 
             spriteName = "penguin";
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
+            SetBackground();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7)) { 
             spriteName = "girl";
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
+            SetBackground();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8)) { 
             spriteName = "droid";
+            SetBackground();
+        }
+
+
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Destroy(Instantiate(Resources.Load(spriteName + "_idle"), new Vector3(0, 0, 1), Quaternion.identity), 4);
+            Destroy(Instantiate(Resources.Load(spriteName + "_idle"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), 4);
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            Destroy(Instantiate(Resources.Load(spriteName + "_happy"), new Vector3(0, 0, 1), Quaternion.identity), 4);
+            Destroy(Instantiate(Resources.Load(spriteName + "_happy"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), 4);
         }
     }
 }

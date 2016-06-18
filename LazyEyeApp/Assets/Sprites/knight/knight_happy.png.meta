@@ -20,7 +20,7 @@ TextureImporter:
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -30,7 +30,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -50,11 +50,12 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+  allowsAlphaSplitting: 0
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -72,6 +73,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55, y: 3}
+        - {x: -61, y: -20}
+        - {x: -61, y: -67}
+        - {x: -55, y: -68}
+        - {x: 13, y: -68}
+        - {x: 64, y: -32}
+        - {x: 64, y: 1}
+        - {x: 47, y: 3}
     - name: knight_attack_1
       rect:
         serializedVersion: 2
@@ -82,6 +92,14 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -48, y: 3}
+        - {x: -59, y: -15}
+        - {x: -59, y: -68}
+        - {x: 7, y: -68}
+        - {x: 41, y: -60}
+        - {x: 50, y: -24}
+        - {x: 50, y: 3}
     - name: knight_attack_2
       rect:
         serializedVersion: 2
@@ -92,6 +110,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 15}
+        - {x: -35, y: 6}
+        - {x: -59, y: -20}
+        - {x: -59, y: -64}
+        - {x: -54, y: -71}
+        - {x: -1, y: -71}
+        - {x: 37, y: -47}
+        - {x: 38, y: -38}
+        - {x: 38, y: 15}
     - name: knight_attack_3
       rect:
         serializedVersion: 2
@@ -102,6 +130,13 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24, y: 31}
+        - {x: -63, y: -11}
+        - {x: -63, y: -68}
+        - {x: 13, y: -68}
+        - {x: 27, y: -47}
+        - {x: 27, y: 31}
     - name: knight_attack_4
       rect:
         serializedVersion: 2
@@ -112,6 +147,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13, y: 45}
+        - {x: -15, y: 45}
+        - {x: -70, y: -32}
+        - {x: -70, y: -62}
+        - {x: -66, y: -68}
+        - {x: 10, y: -68}
+        - {x: 26, y: -49}
+        - {x: 26, y: 12}
+        - {x: 20, y: 42}
     - name: knight_attack_5
       rect:
         serializedVersion: 2
@@ -122,6 +167,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -53, y: 55}
+        - {x: -75, y: 20}
+        - {x: -75, y: -68}
+        - {x: 3, y: -68}
+        - {x: 28, y: -47}
+        - {x: 28, y: 12}
+        - {x: -9, y: 54}
+        - {x: -10, y: 55}
     - name: knight_attack_6
       rect:
         serializedVersion: 2
@@ -132,6 +186,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 22, y: 41}
+        - {x: 12, y: 29}
+        - {x: -42, y: 3}
+        - {x: -74, y: -35}
+        - {x: -74, y: -58}
+        - {x: -71, y: -68}
+        - {x: 19, y: -68}
+        - {x: 35, y: -60}
+        - {x: 35, y: 38}
+        - {x: 27, y: 41}
     - name: knight_attack_7
       rect:
         serializedVersion: 2
@@ -142,6 +207,19 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 69, y: -5}
+        - {x: 69, y: 14}
+        - {x: -11, y: 14}
+        - {x: -29, y: 9}
+        - {x: -66, y: -27}
+        - {x: -70, y: -36}
+        - {x: -70, y: -59}
+        - {x: -43, y: -68}
+        - {x: 0, y: -68}
+        - {x: 22, y: -55}
+        - {x: 46, y: -40}
+        - {x: 61, y: -26}
     - name: knight_attack_8
       rect:
         serializedVersion: 2
@@ -152,6 +230,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 1}
+        - {x: -33, y: 0}
+        - {x: -63, y: -13}
+        - {x: -65, y: -22}
+        - {x: -65, y: -68}
+        - {x: 30, y: -68}
+        - {x: 75, y: -46}
+        - {x: 75, y: -16}
+        - {x: 74, y: -14}
+        - {x: 60, y: -14}
+        - {x: -1, y: 1}
     - name: knight_attack_9
       rect:
         serializedVersion: 2
@@ -162,6 +252,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -44, y: -1}
+        - {x: -55, y: -14}
+        - {x: -61, y: -33}
+        - {x: -61, y: -67}
+        - {x: -57, y: -68}
+        - {x: 69, y: -68}
+        - {x: 75, y: -66}
+        - {x: 75, y: -41}
+        - {x: 16, y: -1}
     - name: knight_attack_10
       rect:
         serializedVersion: 2
@@ -172,6 +272,18 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 58, y: -17}
+        - {x: 0, y: 0}
+        - {x: -43, y: 0}
+        - {x: -59, y: -22}
+        - {x: -61, y: -36}
+        - {x: -61, y: -64}
+        - {x: -55, y: -68}
+        - {x: 31, y: -68}
+        - {x: 71, y: -48}
+        - {x: 73, y: -42}
+        - {x: 73, y: -31}
     - name: knight_attack_11
       rect:
         serializedVersion: 2
@@ -182,6 +294,15 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 1}
+        - {x: -59, y: -21}
+        - {x: -61, y: -33}
+        - {x: -61, y: -68}
+        - {x: 18, y: -68}
+        - {x: 69, y: -41}
+        - {x: 69, y: -20}
+        - {x: 1, y: 1}
     - name: knight_attack_12
       rect:
         serializedVersion: 2
@@ -192,6 +313,16 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55, y: 3}
+        - {x: -61, y: -20}
+        - {x: -61, y: -67}
+        - {x: -55, y: -68}
+        - {x: 13, y: -68}
+        - {x: 64, y: -32}
+        - {x: 64, y: 1}
+        - {x: 47, y: 3}
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
