@@ -17,10 +17,12 @@ public class ClickPanels : MonoBehaviour {
     private int correctPanel;
     private int score;
     private int lifes;
-    
 
-	// Use this for initialization
-	void Start () {
+    static string[] celebrationQuotes = { "YEAAAH!", "YOU GOT THIS!", "YOU ARE ON FIRE!", "KEEP IT COMING!", "BRILLIANT!", "THAT'S SUPERB PLAYING!", "JUST A LITTLE BIT MORE!", "FANTASTIC VISION!", "NOW THAT IS PERFECTION!", "WHAT A HIT!" };
+    static string[] sadQuotes = { "IT WASN'T THERE.", "NOPE!", "TRY AGAIN!", "ALMOST GOT IT...", "IT WAS CLOSE.", "WE NEED TO TRY HARDER!", "MISTAKES HAPPEN." };
+
+    // Use this for initialization
+    void Start () {
         //  set score
         score = 0;
         uiText.text = score.ToString();
@@ -104,6 +106,9 @@ public class ClickPanels : MonoBehaviour {
         //  run character animation
          Destroy(Instantiate(Resources.Load(levelID + "_happy"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
 
+        //  add text reaction
+        Destroy(CreateText(celebrationQuotes[Random.Range(0, celebrationQuotes.Length)]), ANIMATION_TIME);
+
         //  run coin animation
         GameObject coin = Instantiate(Resources.Load("coin"), new Vector3(Random.Range(-10.0f, 10.0f), -2.0f, 1), Quaternion.identity) as GameObject;
         coin.transform.localScale = new Vector3(1, 1, 1);
@@ -115,12 +120,17 @@ public class ClickPanels : MonoBehaviour {
     {
         //  minus 1 life
         lifes--;
-        hearts.transform.GetChild(lifes).gameObject.SetActive(false);
+        StartCoroutine(GrowFadeOutAndDie(hearts.transform.GetChild(lifes).gameObject, ANIMATION_TIME));  // start disappearing animation for heart
+
+        //  check if that was the last life 
         if (lifes == 0)
             GameLost();
 
         //  run animation
         Destroy(Instantiate(Resources.Load(levelID + "_idle"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
+
+        //  add text reaction
+        Destroy(CreateText(sadQuotes[Random.Range(0, sadQuotes.Length)]), ANIMATION_TIME);
     }
 
 
@@ -136,10 +146,10 @@ public class ClickPanels : MonoBehaviour {
     }
 
 
-    IEnumerator MoveAndDie(GameObject obj, Vector3 direction, float speed, float moveTime)
+    IEnumerator MoveAndDie(GameObject obj, Vector3 direction, float speed, float duration)
     {
         float currentTime = 0.0f ;
-        while (currentTime <= moveTime)
+        while (currentTime <= duration)
         {
             obj.transform.Translate(direction * speed * Time.deltaTime);
             currentTime += Time.deltaTime;
@@ -147,6 +157,54 @@ public class ClickPanels : MonoBehaviour {
         }
 
         Destroy(obj);
+    }
+
+
+    IEnumerator GrowFadeOutAndDie(GameObject obj, float duration)
+    {
+        Renderer renderer = obj.GetComponent<Renderer>();
+        Color color = renderer.material.color;
+        Vector3 scaleUp = new Vector3(0.0025f, 0.0025f, 0f);
+
+        while (color.a > 0)
+        {   
+            obj.transform.localScale += scaleUp;
+            color.a -= Time.deltaTime / duration;
+            renderer.material.color = color;            
+            yield return null;
+        }
+
+        Destroy(obj);
+    }
+
+
+    GameObject CreateText(string textString, bool onRandomLocation = true, Vector2 position = default(Vector2), int fontSize = 45)
+    {
+        GameObject textGO = new GameObject("text");
+        textGO.transform.SetParent(GameObject.Find("Canvas").transform);
+
+        Text text = textGO.AddComponent<Text>();
+        text.text = textString;        
+        text.font = Resources.Load<Font>("JazzCreateBubble");
+        text.fontSize = fontSize;
+        text.color = Color.black;
+        text.rectTransform.sizeDelta = new Vector2(300, 100);
+        text.alignment = TextAnchor.MiddleCenter;
+        //text.resizeTextForBestFit = true;
+        //text.horizontalOverflow = HorizontalWrapMode.Overflow;
+
+        if (onRandomLocation)
+        {
+            Vector2 min = new Vector2(-Screen.width * 0.5f + text.rectTransform.rect.width * 0.5f, -Screen.height * 0.5f + text.rectTransform.rect.height * 0.5f);
+            Vector2 max = new Vector2(Screen.width * 0.5f - text.rectTransform.rect.width * 0.5f, Screen.height * 0.5f - text.rectTransform.rect.height * 0.5f);
+            text.rectTransform.anchoredPosition = new Vector2(Random.Range(min.x, max.x), Random.Range(min.y, max.y));
+        }
+        else
+        {
+            text.rectTransform.anchoredPosition = position;
+        }
+
+        return textGO;
     }
 
 
