@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ClickPanels : MonoBehaviour {
 
+    private const int STORY_TIME = 10;
     private const int ANIMATION_TIME = 4;
     private const int MAX_LIFES = 3;
     private const int MAX_ROUNDS = 10;
@@ -13,6 +14,8 @@ public class ClickPanels : MonoBehaviour {
         
     public Text uiText;
     private GameObject hearts;
+
+    private Color fontColor;
 
     private int correctPanel;
     private int score;
@@ -23,10 +26,7 @@ public class ClickPanels : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //  set score
-        score = 0;
-        uiText.text = score.ToString();
-
+        
         //  set lifes and rounds
         lifes = MAX_LIFES;        
         hearts = GameObject.Find("hearts");
@@ -35,9 +35,38 @@ public class ClickPanels : MonoBehaviour {
         levelID = PlayerPrefs.GetString("levelID");
         SetBackground();
 
-        //  choose a correct panel
-        correctPanel = Random.Range(0, 4);
-        transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();
+        //  set font color
+        if (levelID == "knight")
+            fontColor = Color.black;
+        else if (levelID == "dragon")
+            fontColor = Color.red;
+        else if (levelID == "princess")
+            fontColor = new Color(0.5f, 0, 0.5f, 1);
+        else if (levelID == "alien")
+            fontColor = Color.cyan;
+        else if (levelID == "fox")
+            fontColor = new Color(0.9f, 0, 0, 1);
+        else if (levelID == "penguin")
+            fontColor = Color.yellow;
+        else if (levelID == "girl")
+            fontColor = new Color(0.5f, 0, 0, 1);
+        else if (levelID == "droid")
+            fontColor = Color.green;
+
+        //  set score
+        score = 0;
+        uiText.text = score.ToString();
+        uiText.color = fontColor;
+
+        //  hide panels
+        foreach (Transform child in transform)
+            child.gameObject.SetActive(false);
+
+        //  show opening story
+        StartCoroutine(OpeningStory(STORY_TIME));
+
+        //  start game after opening story has finished playing
+        StartCoroutine(StartGame(STORY_TIME));
     }
 
 
@@ -74,15 +103,11 @@ public class ClickPanels : MonoBehaviour {
     }
 
 
-    IEnumerator ResetPanelsAfterTime(float time)
+    IEnumerator ResetPanelsAfterTime(float delay)
     {
-        yield return new WaitForSeconds(time);
-        ResetPanels();
-    }
-
-
-    void ResetPanels()
-    {
+        //  wait for the delay
+        yield return new WaitForSeconds(delay);
+        
         //  show panels
         foreach (Transform child in transform)
             child.gameObject.SetActive(true);
@@ -92,6 +117,7 @@ public class ClickPanels : MonoBehaviour {
         correctPanel = Random.Range(0, 4);              //  choose new random correct panel        
         transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();       //  set the new chosen panel as correct      
     }
+    
     
 
     void ClickedCorrectPanel()
@@ -107,7 +133,7 @@ public class ClickPanels : MonoBehaviour {
          Destroy(Instantiate(Resources.Load(levelID + "_happy"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
 
         //  add text reaction
-        Destroy(CreateText(celebrationQuotes[Random.Range(0, celebrationQuotes.Length)]), ANIMATION_TIME);
+        Destroy(CreateText(celebrationQuotes[Random.Range(0, celebrationQuotes.Length)], fontColor), ANIMATION_TIME);
 
         //  run coin animation
         GameObject coin = Instantiate(Resources.Load("coin"), new Vector3(Random.Range(-10.0f, 10.0f), -2.0f, 1), Quaternion.identity) as GameObject;
@@ -120,17 +146,91 @@ public class ClickPanels : MonoBehaviour {
     {
         //  minus 1 life
         lifes--;
-        StartCoroutine(GrowFadeOutAndDie(hearts.transform.GetChild(lifes).gameObject, ANIMATION_TIME));  // start disappearing animation for heart
+        StartCoroutine(GrowFadeOutAndDie(hearts.transform.GetChild(lifes).gameObject, ANIMATION_TIME * 0.5f));  // start disappearing animation for heart
 
         //  check if that was the last life 
         if (lifes == 0)
+        {
             GameLost();
+            return;
+        }
 
         //  run animation
         Destroy(Instantiate(Resources.Load(levelID + "_idle"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
 
         //  add text reaction
-        Destroy(CreateText(sadQuotes[Random.Range(0, sadQuotes.Length)]), ANIMATION_TIME);
+        Destroy(CreateText(sadQuotes[Random.Range(0, sadQuotes.Length)], fontColor), ANIMATION_TIME);
+    }
+
+
+    IEnumerator OpeningStory(float duration)
+    {
+        //  run animation
+        Destroy(Instantiate(Resources.Load(levelID + "_idle"), new Vector3(0, 1, 1), Quaternion.identity), duration);
+
+        //  add text with plea, part 1
+        string plea = "";
+        
+        if(levelID == "knight")
+            plea = "GOOD DAY. MY NAME IS SIR ARTHUR DAYNE AND I REQUIRE YOUR ASSISTANCE.";
+        else if (levelID == "dragon")
+            plea = "ROAR! THEY CALL ME BALERION AND I HEARD YOU ARE GOOD AT FINDING STUFF.";
+        else if (levelID == "princess")
+            plea = "PLEASED TO MEET YOU, MY NAME IS LADY ELENA AND I'D LIKE TO ASK YOU A FAVOUR.";
+        else if (levelID == "alien")
+            plea = "GREETINGS, EARTHLING. I AM REFERED TO AS SHA'TRA AND I COULD USE YOUR ASSISTANCE.";
+        else if (levelID == "fox")
+            plea = "HIYA! KIT THE FOX HERE, NICE TO MEET YOU. CAN YOU GIVE ME A HAND WITH SOMETHING?";
+        else if (levelID == "penguin")
+            plea = "HEY THERE! I AM TUX AND I REALLY NEED YOUR HELP FOR A FEW MINUTES.";
+        else if (levelID == "girl")
+            plea = "HI! I AM SARA AND I WONDER IF YOU COULD HELP ME WITH SOMETHING.";
+        else if (levelID == "droid")
+            plea = "HELLO, HUMAN. I AM CALLED R3D6 AND I COULD DO WITH SOME HELP, PLEASE.";
+
+        Destroy(CreateText(plea, fontColor, false, new Vector2(0, Screen.height * 0.25f), 30), duration * 0.5f);
+
+        //  wait for the user to read it
+        yield return new WaitForSeconds(duration * 0.5f);
+
+        //  add text with plea, part 2
+        string plea2 = "";
+
+        if (levelID == "knight")
+            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+        else if (levelID == "dragon")
+            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+        else if (levelID == "princess")
+            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+        else if (levelID == "alien")
+            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+        else if (levelID == "fox")
+            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+        else if (levelID == "penguin")
+            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+        else if (levelID == "girl")
+            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+        else if (levelID == "droid")
+            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+
+        Destroy(CreateText(plea2, fontColor, false, new Vector2(0, Screen.height * 0.25f), 30), duration * 0.5f);
+
+        yield return null;
+    }
+
+
+    IEnumerator StartGame(float delay)
+    {
+        //  wait for opening story to finish playing
+        yield return new WaitForSeconds(delay);
+        
+        //  choose a correct panel
+        correctPanel = Random.Range(0, 4);
+        transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();
+        
+        //  show panels
+        foreach (Transform child in transform)
+            child.gameObject.SetActive(true);
     }
 
 
@@ -178,7 +278,7 @@ public class ClickPanels : MonoBehaviour {
     }
 
 
-    GameObject CreateText(string textString, bool onRandomLocation = true, Vector2 position = default(Vector2), int fontSize = 45)
+    GameObject CreateText(string textString, Color textColor, bool onRandomLocation = true, Vector2 position = default(Vector2), int fontSize = 45)
     {
         GameObject textGO = new GameObject("text");
         textGO.transform.SetParent(GameObject.Find("Canvas").transform);
@@ -187,8 +287,8 @@ public class ClickPanels : MonoBehaviour {
         text.text = textString;        
         text.font = Resources.Load<Font>("JazzCreateBubble");
         text.fontSize = fontSize;
-        text.color = Color.black;
-        text.rectTransform.sizeDelta = new Vector2(300, 100);
+        text.color = textColor;
+        text.rectTransform.sizeDelta = new Vector2(350, 100);
         text.alignment = TextAnchor.MiddleCenter;
         //text.resizeTextForBestFit = true;
         //text.horizontalOverflow = HorizontalWrapMode.Overflow;
