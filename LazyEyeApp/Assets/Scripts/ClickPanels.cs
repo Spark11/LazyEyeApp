@@ -2,17 +2,20 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ClickPanels : MonoBehaviour {
 
-    private const int STORY_TIME = 10;
+    private const int STORY_TIME = 2;   // TODO:: set to 10-11 secs
     private const int ANIMATION_TIME = 4;
     private const int MAX_LIFES = 3;
     private const int MAX_ROUNDS = 10;
 
     private string levelID = "knight";
         
-    public Text uiText;
+    private Text scoreText;
+    private GameObject pauseButton;
+    private GameObject pauseMenu;
     private GameObject hearts;
 
     private Color fontColor;
@@ -25,11 +28,20 @@ public class ClickPanels : MonoBehaviour {
     static string[] sadQuotes = { "IT WASN'T THERE.", "NOPE!", "TRY AGAIN!", "ALMOST GOT IT...", "IT WAS CLOSE.", "WE NEED TO TRY HARDER!", "MISTAKES HAPPEN." };
 
     // Use this for initialization
-    void Start () {
-        
+    void Start ()
+    {
+        //  set pause menu and button
+        pauseMenu = GameObject.Find("pauseMenu");
+        pauseButton = GameObject.Find("pauseButton");
+        scoreText = GameObject.Find("score").GetComponent<Text>();
+
         //  set lifes and rounds
         lifes = MAX_LIFES;        
         hearts = GameObject.Find("hearts");
+
+        //  set score
+        score = 0;
+        scoreText.text = score.ToString();
 
         //  set background image
         levelID = PlayerPrefs.GetString("levelID");
@@ -52,15 +64,17 @@ public class ClickPanels : MonoBehaviour {
             fontColor = new Color(0.5f, 0, 0, 1);
         else if (levelID == "droid")
             fontColor = Color.green;
-
-        //  set score
-        score = 0;
-        uiText.text = score.ToString();
-        uiText.color = fontColor;
+        
+        //  change font color
+        scoreText.color = fontColor;    //  score label
+        pauseMenu.transform.GetChild(0).GetComponent<Text>().color = fontColor;     // pause label
 
         //  hide panels
-        foreach (Transform child in transform)
-            child.gameObject.SetActive(false);
+        ShowPanels(false);
+
+        //  hide pause button and menu
+        pauseButton.SetActive(false);
+        pauseMenu.SetActive(false);
 
         //  show opening story
         StartCoroutine(OpeningStory(STORY_TIME));
@@ -92,8 +106,7 @@ public class ClickPanels : MonoBehaviour {
             ClickedWrongPanel();
 
         //  hide panels
-        foreach (Transform child in transform)
-            child.gameObject.SetActive(false);
+        ShowPanels(false);
 
         //  check for victory
         if (score == MAX_ROUNDS)
@@ -109,8 +122,7 @@ public class ClickPanels : MonoBehaviour {
         yield return new WaitForSeconds(delay);
         
         //  show panels
-        foreach (Transform child in transform)
-            child.gameObject.SetActive(true);
+        ShowPanels(true);
 
         //  choose a new correct panel
         transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();       //  reset currently correct panel        
@@ -124,7 +136,7 @@ public class ClickPanels : MonoBehaviour {
     {
         //  update score
         score++;
-        uiText.text = score.ToString();
+        scoreText.text = score.ToString();
 
         if (score == MAX_ROUNDS)
             return;
@@ -227,10 +239,12 @@ public class ClickPanels : MonoBehaviour {
         //  choose a correct panel
         correctPanel = Random.Range(0, 4);
         transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();
-        
+
         //  show panels
-        foreach (Transform child in transform)
-            child.gameObject.SetActive(true);
+        ShowPanels(true);
+
+        //  show pause button
+        pauseButton.SetActive(true);
     }
 
 
@@ -243,6 +257,13 @@ public class ClickPanels : MonoBehaviour {
     void GameLost()
     {
         Debug.Log("NOOOOOOOOOOOOOOOOOOOOOOES");
+    }
+
+
+    void ShowPanels(bool shouldShow)
+    {
+        foreach (Transform child in transform)
+            child.gameObject.SetActive(shouldShow);
     }
 
 
@@ -267,14 +288,81 @@ public class ClickPanels : MonoBehaviour {
         Vector3 scaleUp = new Vector3(0.0025f, 0.0025f, 0f);
 
         while (color.a > 0)
-        {   
+        {
             obj.transform.localScale += scaleUp;
             color.a -= Time.deltaTime / duration;
-            renderer.material.color = color;            
-            yield return null;
+            renderer.material.color = color;
+
+            if (!pauseMenu.activeInHierarchy)
+                yield return null;
         }
 
         Destroy(obj);
+    }
+
+
+    public void OnPause()
+    {   
+        //  pause game objects     
+        Time.timeScale = 0.0f;
+        
+        //  hide panels
+        ShowPanels(false);
+
+        //  hide pause button
+        pauseButton.SetActive(false);
+
+        //  stop the coroutine that is about to reset the panels
+        StopCoroutine("ResetPanelsAfterTime");
+                
+        //  show pause menu
+        pauseMenu.SetActive(true);
+
+        //  remove any texts with quotes, character sprites and coins (if there are such on the screen)
+        try {
+            Destroy(GameObject.Find("text"));
+            Destroy(GameObject.Find(levelID + "_happy(Clone)"));
+            Destroy(GameObject.Find(levelID + "_idle(Clone)"));            
+            GameObject.Find("coin(Clone)").SetActive(false);
+        }
+        catch{}
+    }
+
+
+    public void OnResume()
+    {
+        //  unpause game objects     
+        Time.timeScale = 1.0f;
+
+        //  show panels
+        ShowPanels(true);
+
+        //  show pause button
+        pauseButton.SetActive(true);
+
+        //  hide pause menu
+        pauseMenu.SetActive(false);
+
+        //  start coroutine to reset the panels without any delay
+        StartCoroutine(ResetPanelsAfterTime(0));
+    }
+
+
+    public void OnHome()
+    {
+        //  unpause game objects     
+        Time.timeScale = 1.0f;
+
+        SceneManager.LoadScene("mainMenu");
+    }
+
+
+    public void OnRestart()
+    {
+        //  unpause game objects     
+        Time.timeScale = 1.0f;
+
+        SceneManager.LoadScene("level");
     }
 
 
@@ -307,41 +395,5 @@ public class ClickPanels : MonoBehaviour {
         return textGO;
     }
 
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            levelID = "knight";
-            SetBackground();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) { 
-            levelID = "dragon";
-            SetBackground();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) { 
-            levelID = "princess";
-            SetBackground();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4)) { 
-            levelID = "alien";
-            SetBackground();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha5)) { 
-            levelID = "fox";
-            SetBackground();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha6)) { 
-            levelID = "penguin";
-            SetBackground();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha7)) { 
-            levelID = "girl";
-            SetBackground();
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha8)) { 
-            levelID = "droid";
-            SetBackground();
-        }
-    }
+    
 }
