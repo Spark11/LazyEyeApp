@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class ClickPanels : MonoBehaviour {
 
@@ -23,6 +24,8 @@ public class ClickPanels : MonoBehaviour {
     private int correctPanel;
     private int score;
     private int lifes;
+
+    private Sprite[] items;
 
     static string[] celebrationQuotes = { "YEAAAH!", "YOU GOT THIS!", "YOU ARE ON FIRE!", "KEEP IT COMING!", "BRILLIANT!", "THAT'S SUPERB PLAYING!", "JUST A LITTLE BIT MORE!", "FANTASTIC VISION!", "NOW THAT IS PERFECTION!", "WHAT A HIT!" };
     static string[] sadQuotes = { "IT WASN'T THERE.", "NOPE!", "TRY AGAIN!", "ALMOST GOT IT...", "IT WAS CLOSE.", "WE NEED TO TRY HARDER!", "MISTAKES HAPPEN." };
@@ -46,6 +49,9 @@ public class ClickPanels : MonoBehaviour {
         //  set background image
         levelID = PlayerPrefs.GetString("levelID");
         SetBackground();
+
+        //  load items sprites
+        items = Resources.LoadAll<Sprite>(levelID + "_items");
 
         //  set font color
         if (levelID == "knight")
@@ -151,6 +157,9 @@ public class ClickPanels : MonoBehaviour {
         GameObject coin = Instantiate(Resources.Load("coin"), new Vector3(Random.Range(-10.0f, 10.0f), -2.0f, 1), Quaternion.identity) as GameObject;
         coin.transform.localScale = new Vector3(1, 1, 1);
         StartCoroutine(MoveAndDie(coin, coin.transform.up, ANIMATION_TIME * 0.75f, ANIMATION_TIME));
+
+        //  reveal the item
+        RevealItem();
     }
 
 
@@ -274,7 +283,9 @@ public class ClickPanels : MonoBehaviour {
         {
             obj.transform.Translate(direction * speed * Time.deltaTime);
             currentTime += Time.deltaTime;
-            yield return null;
+
+            if (!pauseMenu.activeInHierarchy)
+                yield return null;
         }
 
         Destroy(obj);
@@ -301,6 +312,32 @@ public class ClickPanels : MonoBehaviour {
     }
 
 
+    void RevealItem()
+    {
+        //  create a game object to hold the random item from the items sprite array
+        GameObject itemGO = new GameObject("item");
+
+        SpriteRenderer itemSR = itemGO.AddComponent<SpriteRenderer>();
+        itemSR.sprite = items[Random.Range(0, items.Length)];
+
+        //  position it where the correct panel is
+        Vector3 position = new Vector3();
+        switch (correctPanel)
+        {
+            case 0: position = new Vector3(-6.5f, 2.5f, 0); break;
+            case 1: position = new Vector3(6.5f, 2.5f, 0); break;
+            case 2: position = new Vector3(-6.5f, -1.5f, 0); break;
+            case 3: position = new Vector3(6.5f, -1.5f, 0); break;
+        }
+        itemGO.transform.position = position;
+
+        Destroy(itemGO, ANIMATION_TIME);
+
+        //  create a particle effect behind it
+        Destroy(Instantiate(Resources.Load("vortex_particle"), position, Quaternion.identity), ANIMATION_TIME);
+    }
+
+
     public void OnPause()
     {   
         //  pause game objects     
@@ -313,17 +350,18 @@ public class ClickPanels : MonoBehaviour {
         pauseButton.SetActive(false);
 
         //  stop the coroutine that is about to reset the panels
-        StopCoroutine("ResetPanelsAfterTime");
+        //StopCoroutine("ResetPanelsAfterTime");
                 
         //  show pause menu
         pauseMenu.SetActive(true);
 
-        //  remove any texts with quotes, character sprites and coins (if there are such on the screen)
+        //  remove any texts with quotes, character sprites, coins or items (if there are such on the screen)
         try {
             Destroy(GameObject.Find("text"));
             Destroy(GameObject.Find(levelID + "_happy(Clone)"));
-            Destroy(GameObject.Find(levelID + "_idle(Clone)"));            
-            GameObject.Find("coin(Clone)").SetActive(false);
+            Destroy(GameObject.Find(levelID + "_idle(Clone)"));
+            Destroy(GameObject.Find("coin(Clone)"));
+            Destroy(GameObject.Find("item"));
         }
         catch{}
     }
@@ -344,7 +382,7 @@ public class ClickPanels : MonoBehaviour {
         pauseMenu.SetActive(false);
 
         //  start coroutine to reset the panels without any delay
-        StartCoroutine(ResetPanelsAfterTime(0));
+        //StartCoroutine(ResetPanelsAfterTime(0));
     }
 
 
@@ -394,6 +432,5 @@ public class ClickPanels : MonoBehaviour {
 
         return textGO;
     }
-
     
 }
