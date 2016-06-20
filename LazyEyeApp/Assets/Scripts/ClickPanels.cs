@@ -7,10 +7,11 @@ using System.Linq;
 
 public class ClickPanels : MonoBehaviour {
 
-    private const int STORY_TIME = 2;   // TODO:: set to 10-11 secs
+    private const int OPENING_STORY_TIME = 2;   // TODO:: set to 10-11
+    private const int CLOSING_STORY_TIME = 6;
     private const int ANIMATION_TIME = 4;
-    private const int MAX_LIFES = 3;
-    private const int MAX_ROUNDS = 10;
+    private const int MAX_LIFES = 3;            // TODO:: set to 3
+    private const int MAX_ROUNDS = 3;          // TODO:: set to 10-15
 
     private string levelID = "knight";
         
@@ -20,6 +21,8 @@ public class ClickPanels : MonoBehaviour {
     private GameObject hearts;
 
     private Color fontColor;
+
+    private Coroutine coroutine;
 
     private int correctPanel;
     private int score;
@@ -33,7 +36,7 @@ public class ClickPanels : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        //  set pause menu and button
+        //  initialize GUI objects
         pauseMenu = GameObject.Find("pauseMenu");
         pauseButton = GameObject.Find("pauseButton");
         scoreText = GameObject.Find("score").GetComponent<Text>();
@@ -50,7 +53,7 @@ public class ClickPanels : MonoBehaviour {
         levelID = PlayerPrefs.GetString("levelID");
         SetBackground();
 
-        //  load items sprites
+        //  load a sprite array of character's items
         items = Resources.LoadAll<Sprite>(levelID + "_items");
 
         //  set font color
@@ -71,9 +74,9 @@ public class ClickPanels : MonoBehaviour {
         else if (levelID == "droid")
             fontColor = Color.green;
         
-        //  change font color
-        scoreText.color = fontColor;    //  score label
-        pauseMenu.transform.GetChild(0).GetComponent<Text>().color = fontColor;     // pause label
+        //  change font color of text fields
+        scoreText.color = fontColor;                                                //  score label
+        pauseMenu.transform.GetChild(0).GetComponent<Text>().color = fontColor;     //  pause label
 
         //  hide panels
         ShowPanels(false);
@@ -83,10 +86,7 @@ public class ClickPanels : MonoBehaviour {
         pauseMenu.SetActive(false);
 
         //  show opening story
-        StartCoroutine(OpeningStory(STORY_TIME));
-
-        //  start game after opening story has finished playing
-        StartCoroutine(StartGame(STORY_TIME));
+        StartCoroutine(OpeningStory(OPENING_STORY_TIME));
     }
 
 
@@ -102,87 +102,7 @@ public class ClickPanels : MonoBehaviour {
 
         background.transform.localScale = new Vector3(worldScreenWidth / backSR.sprite.bounds.size.x, worldScreenHeight / backSR.sprite.bounds.size.y, 1);
     }
-
-
-    public void PanelClicked(int id) {
-        //  check if the clicked panel is the correct one
-        if (id == correctPanel)
-            ClickedCorrectPanel();
-        else
-            ClickedWrongPanel();
-
-        //  hide panels
-        ShowPanels(false);
-
-        //  check for victory
-        if (score == MAX_ROUNDS)
-            GameWon();
-        else        
-            StartCoroutine(ResetPanelsAfterTime(ANIMATION_TIME));   //  reset panels back after animations
-    }
-
-
-    IEnumerator ResetPanelsAfterTime(float delay)
-    {
-        //  wait for the delay
-        yield return new WaitForSeconds(delay);
-        
-        //  show panels
-        ShowPanels(true);
-
-        //  choose a new correct panel
-        transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();       //  reset currently correct panel        
-        correctPanel = Random.Range(0, 4);              //  choose new random correct panel        
-        transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();       //  set the new chosen panel as correct      
-    }
     
-    
-
-    void ClickedCorrectPanel()
-    {
-        //  update score
-        score++;
-        scoreText.text = score.ToString();
-
-        if (score == MAX_ROUNDS)
-            return;
-
-        //  run character animation
-         Destroy(Instantiate(Resources.Load(levelID + "_happy"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
-
-        //  add text reaction
-        Destroy(CreateText(celebrationQuotes[Random.Range(0, celebrationQuotes.Length)], fontColor), ANIMATION_TIME);
-
-        //  run coin animation
-        GameObject coin = Instantiate(Resources.Load("coin"), new Vector3(Random.Range(-10.0f, 10.0f), -2.0f, 1), Quaternion.identity) as GameObject;
-        coin.transform.localScale = new Vector3(1, 1, 1);
-        StartCoroutine(MoveAndDie(coin, coin.transform.up, ANIMATION_TIME * 0.75f, ANIMATION_TIME));
-
-        //  reveal the item
-        RevealItem();
-    }
-
-
-    void ClickedWrongPanel()
-    {
-        //  minus 1 life
-        lifes--;
-        StartCoroutine(GrowFadeOutAndDie(hearts.transform.GetChild(lifes).gameObject, ANIMATION_TIME * 0.5f));  // start disappearing animation for heart
-
-        //  check if that was the last life 
-        if (lifes == 0)
-        {
-            GameLost();
-            return;
-        }
-
-        //  run animation
-        Destroy(Instantiate(Resources.Load(levelID + "_idle"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
-
-        //  add text reaction
-        Destroy(CreateText(sadQuotes[Random.Range(0, sadQuotes.Length)], fontColor), ANIMATION_TIME);
-    }
-
 
     IEnumerator OpeningStory(float duration)
     {
@@ -236,15 +156,16 @@ public class ClickPanels : MonoBehaviour {
 
         Destroy(CreateText(plea2, fontColor, false, new Vector2(0, Screen.height * 0.25f), 30), duration * 0.5f);
 
-        yield return null;
+        //  wait for opening story to finish playing
+        yield return new WaitForSeconds(duration * 0.5f);
+
+        //  start the game
+        StartGame();
     }
 
 
-    IEnumerator StartGame(float delay)
+    void StartGame()
     {
-        //  wait for opening story to finish playing
-        yield return new WaitForSeconds(delay);
-        
         //  choose a correct panel
         correctPanel = Random.Range(0, 4);
         transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();
@@ -257,6 +178,93 @@ public class ClickPanels : MonoBehaviour {
     }
 
 
+    public void PanelClicked(int id)
+    {
+        //  hide panels
+        ShowPanels(false);
+
+        //  check if the clicked panel is the correct one
+        if (id == correctPanel)
+            ClickedCorrectPanel();
+        else
+            ClickedWrongPanel();
+    }
+
+
+    IEnumerator ResetPanelsAfterTime(float delay)
+    {
+        //  wait for the delay
+        yield return new WaitForSeconds(delay);
+
+        //  show panels
+        ShowPanels(true);
+
+        //  choose a new correct panel
+        transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();       //  reset currently correct panel        
+        correctPanel = Random.Range(0, 4);              //  choose new random correct panel        
+        transform.GetChild(correctPanel).GetComponent<PanelSelected>().ToggleIsCorrect();       //  set the new chosen panel as correct     
+
+        yield return null;
+    }
+
+
+
+    void ClickedCorrectPanel()
+    {
+        //  update score
+        score++;
+        scoreText.text = score.ToString();
+
+        //  check for victory
+        if (score == MAX_ROUNDS)
+        {
+            GameWon();
+            return;
+        }
+
+        //  run character animation
+        Destroy(Instantiate(Resources.Load(levelID + "_happy"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
+
+        //  add text reaction
+        Destroy(CreateText(celebrationQuotes[Random.Range(0, celebrationQuotes.Length)], fontColor), ANIMATION_TIME);
+
+        //  run coin animation
+        GameObject coin = Instantiate(Resources.Load("coin"), new Vector3(Random.Range(-10.0f, 10.0f), -2.0f, 1), Quaternion.identity) as GameObject;
+        coin.transform.localScale = new Vector3(1, 1, 1);
+        StartCoroutine(MoveAndDie(coin, coin.transform.up, ANIMATION_TIME * 0.75f, ANIMATION_TIME));
+
+        //  reveal the item
+        RevealItem();
+
+        //  reset panels back after animations
+        coroutine = StartCoroutine(ResetPanelsAfterTime(ANIMATION_TIME));
+    }
+
+
+    void ClickedWrongPanel()
+    {
+        //  minus 1 life
+        lifes--;
+        StartCoroutine(GrowFadeOutAndDie(hearts.transform.GetChild(lifes).gameObject, ANIMATION_TIME * 0.5f));  // start disappearing animation for heart
+
+        //  check if that was the last life 
+        if (lifes == 0)
+        {
+            GameLost();
+            return;
+        }
+
+        //  run animation
+        Destroy(Instantiate(Resources.Load(levelID + "_idle"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
+
+        //  add text reaction
+        Destroy(CreateText(sadQuotes[Random.Range(0, sadQuotes.Length)], fontColor), ANIMATION_TIME);
+
+        //  reset panels back after animations
+        coroutine = StartCoroutine(ResetPanelsAfterTime(ANIMATION_TIME));
+    }
+
+
     void GameWon()
     {
         Debug.Log("MUCH WIN. VERY VICTORY. WOW.");
@@ -265,7 +273,36 @@ public class ClickPanels : MonoBehaviour {
     
     void GameLost()
     {
-        Debug.Log("NOOOOOOOOOOOOOOOOOOOOOOES");
+        //  hide pause button
+        pauseButton.SetActive(false);
+
+        //  run animation
+        Destroy(Instantiate(Resources.Load(levelID + "_idle"), new Vector3(0, 1, 1), Quaternion.identity), CLOSING_STORY_TIME);
+
+        //  add text with quote
+        string quote = "";
+
+        if (levelID == "knight")
+            quote = "GOOD GAME, CHAMP. BETTER LUCK NEXT TIME!";
+        else if (levelID == "dragon")
+            quote = "ROAR! THEY CALL ME BALERION AND I HEARD YOU ARE GOOD AT FINDING STUFF.";
+        else if (levelID == "princess")
+            quote = "PLEASED TO MEET YOU, MY NAME IS LADY ELENA AND I'D LIKE TO ASK YOU A FAVOUR.";
+        else if (levelID == "alien")
+            quote = "GREETINGS, EARTHLING. I AM REFERED TO AS SHA'TRA AND I COULD USE YOUR ASSISTANCE.";
+        else if (levelID == "fox")
+            quote = "HIYA! KIT THE FOX HERE, NICE TO MEET YOU. CAN YOU GIVE ME A HAND WITH SOMETHING?";
+        else if (levelID == "penguin")
+            quote = "HEY THERE! I AM TUX AND I REALLY NEED YOUR HELP FOR A FEW MINUTES.";
+        else if (levelID == "girl")
+            quote = "HI! I AM SARA AND I WONDER IF YOU COULD HELP ME WITH SOMETHING.";
+        else if (levelID == "droid")
+            quote = "HELLO, HUMAN. I AM CALLED R3D6 AND I COULD DO WITH SOME HELP, PLEASE.";
+
+        Destroy(CreateText(quote, fontColor, false, new Vector2(0, Screen.height * 0.25f), 30), CLOSING_STORY_TIME);
+
+        //  go back to main screen after the closing animation is finished
+        Invoke("OnHome", CLOSING_STORY_TIME);
     }
 
 
@@ -281,11 +318,12 @@ public class ClickPanels : MonoBehaviour {
         float currentTime = 0.0f ;
         while (currentTime <= duration)
         {
+            if (!pauseMenu.activeInHierarchy)
+                yield return null;
+
             obj.transform.Translate(direction * speed * Time.deltaTime);
             currentTime += Time.deltaTime;
 
-            if (!pauseMenu.activeInHierarchy)
-                yield return null;
         }
 
         Destroy(obj);
@@ -350,18 +388,19 @@ public class ClickPanels : MonoBehaviour {
         pauseButton.SetActive(false);
 
         //  stop the coroutine that is about to reset the panels
-        //StopCoroutine("ResetPanelsAfterTime");
+        StopCoroutine(coroutine);
                 
         //  show pause menu
         pauseMenu.SetActive(true);
 
-        //  remove any texts with quotes, character sprites, coins or items (if there are such on the screen)
+        //  remove any texts with quotes, character sprites, coins, items or particles (if there are such on the screen)
         try {
             Destroy(GameObject.Find("text"));
             Destroy(GameObject.Find(levelID + "_happy(Clone)"));
             Destroy(GameObject.Find(levelID + "_idle(Clone)"));
             Destroy(GameObject.Find("coin(Clone)"));
             Destroy(GameObject.Find("item"));
+            Destroy(GameObject.Find("vortex_particle(Clone)"));
         }
         catch{}
     }
@@ -373,7 +412,7 @@ public class ClickPanels : MonoBehaviour {
         Time.timeScale = 1.0f;
 
         //  show panels
-        ShowPanels(true);
+        //ShowPanels(true);
 
         //  show pause button
         pauseButton.SetActive(true);
@@ -382,7 +421,7 @@ public class ClickPanels : MonoBehaviour {
         pauseMenu.SetActive(false);
 
         //  start coroutine to reset the panels without any delay
-        //StartCoroutine(ResetPanelsAfterTime(0));
+        coroutine = StartCoroutine(ResetPanelsAfterTime(0));
     }
 
 
