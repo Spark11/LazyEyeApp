@@ -7,11 +7,12 @@ using System.Linq;
 
 public class ClickPanels : MonoBehaviour {
 
-    private const int OPENING_STORY_TIME = 2;   // TODO:: set to 10-11
-    private const int CLOSING_STORY_TIME = 6;
+    private const int OPENING_STORY_TIME = 11;  // TODO:: set to 10-11
+    private const int LOSS_CLOSING_STORY_TIME = 6;
+    private const int WIN_CLOSING_STORY_TIME = 10;
     private const int ANIMATION_TIME = 4;
     private const int MAX_LIFES = 3;            // TODO:: set to 3
-    private const int MAX_ROUNDS = 3;          // TODO:: set to 10-15
+    private const int MAX_ROUNDS = 15;          // TODO:: set to 10-15
 
     private string levelID = "knight";
         
@@ -218,7 +219,7 @@ public class ClickPanels : MonoBehaviour {
         //  check for victory
         if (score == MAX_ROUNDS)
         {
-            GameWon();
+            StartCoroutine(GameWon());
             return;
         }
 
@@ -265,9 +266,70 @@ public class ClickPanels : MonoBehaviour {
     }
 
 
-    void GameWon()
+    IEnumerator GameWon()
     {
-        Debug.Log("MUCH WIN. VERY VICTORY. WOW.");
+        //  go back to main screen after the closing animation is finished
+        Invoke("OnHome", WIN_CLOSING_STORY_TIME);
+
+        //  hide pause button
+        pauseButton.SetActive(false);
+
+        //  run animation
+        Destroy(Instantiate(Resources.Load(levelID + "_happy"), new Vector3(0, 1, 1), Quaternion.identity), WIN_CLOSING_STORY_TIME);
+
+        //  add text with quote
+        string quote = "";
+
+        if (levelID == "knight")
+            quote = "YES, YOU DID IT! YOU ARE A TRUE NOBLE HERO!";
+        else if (levelID == "dragon")
+            quote = "ROAR! THEY CALL ME BALERION AND I HEARD YOU ARE GOOD AT FINDING STUFF.";
+        else if (levelID == "princess")
+            quote = "PLEASED TO MEET YOU, MY NAME IS LADY ELENA AND I'D LIKE TO ASK YOU A FAVOUR.";
+        else if (levelID == "alien")
+            quote = "GREETINGS, EARTHLING. I AM REFERED TO AS SHA'TRA AND I COULD USE YOUR ASSISTANCE.";
+        else if (levelID == "fox")
+            quote = "HIYA! KIT THE FOX HERE, NICE TO MEET YOU. CAN YOU GIVE ME A HAND WITH SOMETHING?";
+        else if (levelID == "penguin")
+            quote = "HEY THERE! I AM TUX AND I REALLY NEED YOUR HELP FOR A FEW MINUTES.";
+        else if (levelID == "girl")
+            quote = "HI! I AM SARA AND I WONDER IF YOU COULD HELP ME WITH SOMETHING.";
+        else if (levelID == "droid")
+            quote = "HELLO, HUMAN. I AM CALLED R3D6 AND I COULD DO WITH SOME HELP, PLEASE.";
+
+        Destroy(CreateText(quote, fontColor, false, new Vector2(0, Screen.height * 0.25f), 30), WIN_CLOSING_STORY_TIME);
+
+        //  make coins fall from the sky
+        for(int i = 0; i < MAX_ROUNDS; i++)
+        {
+            GameObject coin = Instantiate(Resources.Load("coin"), new Vector3(Random.Range(-10.0f, 10.0f), 5.0f, 1), Quaternion.identity) as GameObject;
+            coin.transform.localScale = new Vector3(0.75f, 0.75f, 1);
+            StartCoroutine(MoveAndDie(coin, -coin.transform.up, ANIMATION_TIME, ANIMATION_TIME));
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        //  make items appear around character
+        for (int i = 0; i < items.Length; i++)
+        {
+            //  create a game object to hold the random item from the items sprite array
+            GameObject itemGO = new GameObject("item");
+
+            SpriteRenderer itemSR = itemGO.AddComponent<SpriteRenderer>();
+            itemSR.sprite = items[i];
+
+            //  position it on the left or right of the character with declining height (3 items on the left and 3 on the right)
+            float x = (i==1 || i==4) ? 6.0f : 9.0f;
+            x *= (i < items.Length / 2) ? -1 : 1;
+            float y = 4.0f - 3 * (i % (items.Length / 2));
+            Vector3 position = new Vector3(x, y, 1);
+            itemGO.transform.position = position;
+
+            //  create a particle effect behind it
+            position.z += 1;
+            Instantiate(Resources.Load("vortex_particle"), position, Quaternion.identity);
+
+            yield return new WaitForSeconds(1);
+        }
     }
 
     
@@ -277,7 +339,7 @@ public class ClickPanels : MonoBehaviour {
         pauseButton.SetActive(false);
 
         //  run animation
-        Destroy(Instantiate(Resources.Load(levelID + "_idle"), new Vector3(0, 1, 1), Quaternion.identity), CLOSING_STORY_TIME);
+        Destroy(Instantiate(Resources.Load(levelID + "_idle"), new Vector3(0, 1, 1), Quaternion.identity), LOSS_CLOSING_STORY_TIME);
 
         //  add text with quote
         string quote = "";
@@ -299,10 +361,10 @@ public class ClickPanels : MonoBehaviour {
         else if (levelID == "droid")
             quote = "HELLO, HUMAN. I AM CALLED R3D6 AND I COULD DO WITH SOME HELP, PLEASE.";
 
-        Destroy(CreateText(quote, fontColor, false, new Vector2(0, Screen.height * 0.25f), 30), CLOSING_STORY_TIME);
+        Destroy(CreateText(quote, fontColor, false, new Vector2(0, Screen.height * 0.25f), 30), LOSS_CLOSING_STORY_TIME);
 
         //  go back to main screen after the closing animation is finished
-        Invoke("OnHome", CLOSING_STORY_TIME);
+        Invoke("OnHome", LOSS_CLOSING_STORY_TIME);
     }
 
 
@@ -372,6 +434,7 @@ public class ClickPanels : MonoBehaviour {
         Destroy(itemGO, ANIMATION_TIME);
 
         //  create a particle effect behind it
+        position.z += 1;
         Destroy(Instantiate(Resources.Load("vortex_particle"), position, Quaternion.identity), ANIMATION_TIME);
     }
 
