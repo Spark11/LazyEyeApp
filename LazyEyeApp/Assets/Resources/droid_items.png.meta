@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: b4cb2646e66be2c4aa21350d9760ce1a
+timeCreated: 1466463483
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: droid_items_0
+    21300002: droid_items_1
+    21300004: droid_items_2
+    21300006: droid_items_3
+    21300008: droid_items_4
+    21300010: droid_items_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: droid_items_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 101, y: 66}
+        - {x: 6, y: 103}
+        - {x: -10, y: 103}
+        - {x: -89, y: 54}
+        - {x: -108, y: 32}
+        - {x: -108, y: -27}
+        - {x: -98, y: -45}
+        - {x: -13, y: -93}
+        - {x: 15, y: -93}
+        - {x: 99, y: -43}
+        - {x: 107, y: -39}
+        - {x: 107, y: 40}
+    - name: droid_items_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 98, y: 47}
+        - {x: 45, y: 72}
+        - {x: 26, y: 76}
+        - {x: -15, y: 76}
+        - {x: -107, y: 23}
+        - {x: -107, y: -57}
+        - {x: -93, y: -76}
+        - {x: -20, y: -98}
+        - {x: 29, y: -98}
+        - {x: 107, y: -57}
+        - {x: 110, y: -2}
+        - {x: 110, y: 36}
+    - name: droid_items_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -80, y: 75}
+        - {x: -113, y: 57}
+        - {x: -113, y: -8}
+        - {x: 41, y: -82}
+        - {x: 99, y: -82}
+        - {x: 115, y: -61}
+        - {x: 115, y: -31}
+        - {x: -59, y: 75}
+    - name: droid_items_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -45, y: 93}
+        - {x: -75, y: 67}
+        - {x: -91, y: 29}
+        - {x: -91, y: -76}
+        - {x: -88, y: -84}
+        - {x: -86, y: -91}
+        - {x: -66, y: -95}
+        - {x: 64, y: -95}
+        - {x: 81, y: -94}
+        - {x: 90, y: -82}
+        - {x: 90, y: 46}
+        - {x: 62, y: 93}
+    - name: droid_items_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 113, y: 34}
+        - {x: 60, y: 63}
+        - {x: -10, y: 87}
+        - {x: -44, y: 87}
+        - {x: -114, y: 61}
+        - {x: -114, y: -24}
+        - {x: -26, y: -81}
+        - {x: 1, y: -81}
+        - {x: 15, y: -71}
+        - {x: 114, y: -21}
+        - {x: 114, y: 31}
+    - name: droid_items_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 85, y: 65}
+        - {x: 71, y: 79}
+        - {x: -72, y: 79}
+        - {x: -78, y: 73}
+        - {x: -84, y: -57}
+        - {x: -84, y: -76}
+        - {x: -76, y: -82}
+        - {x: -64, y: -86}
+        - {x: 85, y: -86}
+        - {x: 90, y: -79}
+        - {x: 90, y: -74}
+        - {x: 85, y: -68}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

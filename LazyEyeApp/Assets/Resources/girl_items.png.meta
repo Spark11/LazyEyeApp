@@ -1,0 +1,209 @@
+fileFormatVersion: 2
+guid: 568e7d0524341e443aa5df1af4efccd4
+timeCreated: 1466468288
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: girl_items_0
+    21300002: girl_items_1
+    21300004: girl_items_2
+    21300006: girl_items_3
+    21300008: girl_items_4
+    21300010: girl_items_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: girl_items_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 42, y: 80}
+        - {x: -67, y: 80}
+        - {x: -85, y: 38}
+        - {x: -85, y: -54}
+        - {x: -54, y: -86}
+        - {x: -50, y: -87}
+        - {x: 41, y: -87}
+        - {x: 79, y: -72}
+        - {x: 82, y: -53}
+        - {x: 82, y: 61}
+    - name: girl_items_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 93, y: -58}
+        - {x: 75, y: -39}
+        - {x: 61, y: -35}
+        - {x: 59, y: -35}
+        - {x: 58, y: -34}
+        - {x: 56, y: -34}
+        - {x: 55, y: -33}
+        - {x: 53, y: -33}
+        - {x: 56, y: -33}
+        - {x: 60, y: -35}
+        - {x: 66, y: -35}
+        - {x: 71, y: -36}
+        - {x: 93, y: -31}
+        - {x: 93, y: 68}
+        - {x: 92, y: 80}
+        - {x: 31, y: 102}
+        - {x: -64, y: 102}
+        - {x: -90, y: 43}
+        - {x: -90, y: -102}
+        - {x: -79, y: -105}
+        - {x: 17, y: -105}
+        - {x: 76, y: -98}
+        - {x: 93, y: -81}
+    - name: girl_items_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 57, y: 75}
+        - {x: -58, y: 75}
+        - {x: -123, y: 50}
+        - {x: -123, y: -1}
+        - {x: -91, y: -57}
+        - {x: -30, y: -82}
+        - {x: 72, y: -82}
+        - {x: 111, y: -76}
+        - {x: 121, y: -47}
+        - {x: 121, y: 27}
+    - name: girl_items_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -91, y: 80}
+        - {x: -94, y: 48}
+        - {x: -94, y: -72}
+        - {x: -77, y: -80}
+        - {x: 18, y: -80}
+        - {x: 24, y: -79}
+        - {x: 80, y: -55}
+        - {x: 82, y: -28}
+        - {x: 82, y: 80}
+    - name: girl_items_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8, y: 100}
+        - {x: -6, y: 100}
+        - {x: -14, y: 96}
+        - {x: -18, y: 77}
+        - {x: -50, y: 30}
+        - {x: -72, y: -28}
+        - {x: -77, y: -44}
+        - {x: -77, y: -73}
+        - {x: -47, y: -92}
+        - {x: 45, y: -92}
+        - {x: 76, y: -77}
+        - {x: 76, y: -37}
+        - {x: 51, y: 32}
+    - name: girl_items_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 26, y: 88}
+        - {x: 22, y: 84}
+        - {x: 22, y: 76}
+        - {x: 24, y: 67}
+        - {x: 27, y: 60}
+        - {x: -7, y: 87}
+        - {x: -17, y: 88}
+        - {x: -69, y: 88}
+        - {x: -91, y: 53}
+        - {x: -91, y: -48}
+        - {x: -82, y: -84}
+        - {x: -57, y: -88}
+        - {x: 91, y: -88}
+        - {x: 91, y: 83}
+        - {x: 84, y: 88}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

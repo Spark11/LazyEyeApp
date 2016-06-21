@@ -1,0 +1,191 @@
+fileFormatVersion: 2
+guid: 0ff88a3c96db836469d80caac167185c
+timeCreated: 1466468484
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: alien_items_0
+    21300002: alien_items_1
+    21300004: alien_items_2
+    21300006: alien_items_3
+    21300008: alien_items_4
+    21300010: alien_items_5
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: alien_items_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 78, y: 41}
+        - {x: 33, y: 47}
+        - {x: 15, y: 51}
+        - {x: -96, y: 51}
+        - {x: -100, y: 42}
+        - {x: -100, y: 16}
+        - {x: -19, y: -61}
+        - {x: 48, y: -61}
+        - {x: 103, y: -18}
+        - {x: 103, y: 5}
+        - {x: 101, y: 8}
+    - name: alien_items_1
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40, y: 76}
+        - {x: -28, y: 76}
+        - {x: -110, y: 52}
+        - {x: -110, y: -56}
+        - {x: -101, y: -83}
+        - {x: -79, y: -86}
+        - {x: 66, y: -86}
+        - {x: 110, y: -35}
+        - {x: 110, y: 21}
+        - {x: 109, y: 22}
+    - name: alien_items_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -76, y: 90}
+        - {x: -80, y: 77}
+        - {x: -80, y: -93}
+        - {x: 37, y: -93}
+        - {x: 86, y: -85}
+        - {x: 86, y: 87}
+        - {x: 83, y: 90}
+    - name: alien_items_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 25, y: 86}
+        - {x: 11, y: 98}
+        - {x: -9, y: 98}
+        - {x: -12, y: 97}
+        - {x: -85, y: 54}
+        - {x: -85, y: -93}
+        - {x: -38, y: -108}
+        - {x: 52, y: -108}
+        - {x: 87, y: -70}
+        - {x: 87, y: 11}
+        - {x: 83, y: 27}
+    - name: alien_items_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -42, y: 71}
+        - {x: -74, y: 51}
+        - {x: -74, y: -34}
+        - {x: -46, y: -86}
+        - {x: 34, y: -86}
+        - {x: 71, y: -72}
+        - {x: 85, y: -66}
+        - {x: 85, y: 71}
+    - name: alien_items_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 124, y: 6}
+        - {x: 70, y: 85}
+        - {x: 55, y: 87}
+        - {x: -44, y: 87}
+        - {x: -63, y: 79}
+        - {x: -124, y: 20}
+        - {x: -124, y: -19}
+        - {x: -111, y: -40}
+        - {x: -71, y: -59}
+        - {x: -87, y: -100}
+        - {x: -84, y: -112}
+        - {x: 75, y: -112}
+        - {x: 78, y: -111}
+        - {x: 79, y: -55}
+        - {x: 124, y: -26}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
