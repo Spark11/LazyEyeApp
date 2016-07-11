@@ -7,12 +7,12 @@ using System.Linq;
 
 public class ClickPanels : MonoBehaviour {
 
-    private const int OPENING_STORY_TIME = 2;  // TODO:: set to 10-11
+    private const int OPENING_STORY_TIME = 11;  // TODO:: set to 10-11
     private const int LOSS_CLOSING_STORY_TIME = 6;
     private const int WIN_CLOSING_STORY_TIME = 10;
     private const int ANIMATION_TIME = 4;
-    private const int MAX_LIFES = 3;            // TODO:: set to 3
-    private const int MAX_ROUNDS = 15;          // TODO:: set to 10-15
+    private const int MAX_LIFES = 3;
+    private const int MAX_ROUNDS = 6;          // TODO:: set to 10-15
 
     private string levelID = "knight";
         
