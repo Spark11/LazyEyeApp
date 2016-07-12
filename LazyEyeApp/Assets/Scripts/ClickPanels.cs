@@ -7,12 +7,14 @@ using System.Linq;
 
 public class ClickPanels : MonoBehaviour {
 
-    private const int OPENING_STORY_TIME = 11;  // TODO:: set to 10-11
+    private const int OPENING_STORY_TIME = 10;  // TODO:: set to 10-11
     private const int LOSS_CLOSING_STORY_TIME = 6;
     private const int WIN_CLOSING_STORY_TIME = 10;
     private const int ANIMATION_TIME = 4;
     private const int MAX_LIFES = 3;
     private const int MAX_ROUNDS = 6;          // TODO:: set to 10-15
+
+    private static readonly Vector2 SCREEN = new Vector2(9, 6);
 
     private string levelID = "knight";
         
@@ -143,7 +145,7 @@ public class ClickPanels : MonoBehaviour {
         else if (levelID == "dragon")
             plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
         else if (levelID == "princess")
-            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+            plea2 = "I SEEM TO HAVE LOST MY " + MAX_ROUNDS + " FAVOURITE ACCESSORIES. WOULD YOU MIND FINDING THEM FOR ME?";
         else if (levelID == "alien")
             plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
         else if (levelID == "fox")
@@ -224,13 +226,13 @@ public class ClickPanels : MonoBehaviour {
         }
 
         //  run character animation
-        Destroy(Instantiate(Resources.Load(levelID + "_happy"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
+        Destroy(Instantiate(Resources.Load(levelID + "_happy"), new Vector3(Random.Range(-SCREEN.x, SCREEN.x), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
 
         //  add text reaction
         Destroy(CreateText(celebrationQuotes[Random.Range(0, celebrationQuotes.Length)], fontColor), ANIMATION_TIME);
 
         //  run coin animation
-        GameObject coin = Instantiate(Resources.Load("coin"), new Vector3(Random.Range(-10.0f, 10.0f), -2.0f, 1), Quaternion.identity) as GameObject;
+        GameObject coin = Instantiate(Resources.Load("coin"), new Vector3(Random.Range(-SCREEN.x, SCREEN.x), -2.0f, 1), Quaternion.identity) as GameObject;
         coin.transform.localScale = new Vector3(1, 1, 1);
         StartCoroutine(MoveAndDie(coin, coin.transform.up, ANIMATION_TIME * 0.75f, ANIMATION_TIME));
 
@@ -256,7 +258,7 @@ public class ClickPanels : MonoBehaviour {
         }
 
         //  run animation
-        Destroy(Instantiate(Resources.Load(levelID + "_idle"), new Vector3(Random.Range(-10.0f, 10.0f), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
+        Destroy(Instantiate(Resources.Load(levelID + "_idle"), new Vector3(Random.Range(-SCREEN.x, SCREEN.x), Random.Range(-1.0f, 4.0f), 1), Quaternion.identity), ANIMATION_TIME);
 
         //  add text reaction
         Destroy(CreateText(sadQuotes[Random.Range(0, sadQuotes.Length)], fontColor), ANIMATION_TIME);
@@ -285,7 +287,7 @@ public class ClickPanels : MonoBehaviour {
         else if (levelID == "dragon")
             quote = "ROAR! THEY CALL ME BALERION AND I HEARD YOU ARE GOOD AT FINDING STUFF.";
         else if (levelID == "princess")
-            quote = "PLEASED TO MEET YOU, MY NAME IS LADY ELENA AND I'D LIKE TO ASK YOU A FAVOUR.";
+            quote = "YES, YOU MADE IT! I AM MUCH OBLIGED TO YOU FOR YOUR KINDNESS.";
         else if (levelID == "alien")
             quote = "GREETINGS, EARTHLING. I AM REFERED TO AS SHA'TRA AND I COULD USE YOUR ASSISTANCE.";
         else if (levelID == "fox")
@@ -302,7 +304,7 @@ public class ClickPanels : MonoBehaviour {
         //  make coins fall from the sky
         for(int i = 0; i < MAX_ROUNDS; i++)
         {
-            GameObject coin = Instantiate(Resources.Load("coin"), new Vector3(Random.Range(-10.0f, 10.0f), 5.0f, 1), Quaternion.identity) as GameObject;
+            GameObject coin = Instantiate(Resources.Load("coin"), new Vector3(Random.Range(-SCREEN.x, SCREEN.x), 5.0f, 1), Quaternion.identity) as GameObject;
             coin.transform.localScale = new Vector3(0.75f, 0.75f, 1);
             StartCoroutine(MoveAndDie(coin, -coin.transform.up, ANIMATION_TIME, ANIMATION_TIME));
             yield return new WaitForSeconds(0.05f);
@@ -318,7 +320,7 @@ public class ClickPanels : MonoBehaviour {
             itemSR.sprite = items[i];
 
             //  position it on the left or right of the character with declining height (3 items on the left and 3 on the right)
-            float x = (i==1 || i==4) ? 6.0f : 9.0f;
+            float x = (i==1 || i==4) ? 4.5f : 7.0f;         //  TODO:: 6.0f : 9.0f
             x *= (i < items.Length / 2) ? -1 : 1;
             float y = 4.0f - 3 * (i % (items.Length / 2));
             Vector3 position = new Vector3(x, y, 1);
@@ -349,7 +351,7 @@ public class ClickPanels : MonoBehaviour {
         else if (levelID == "dragon")
             quote = "ROAR! THEY CALL ME BALERION AND I HEARD YOU ARE GOOD AT FINDING STUFF.";
         else if (levelID == "princess")
-            quote = "PLEASED TO MEET YOU, MY NAME IS LADY ELENA AND I'D LIKE TO ASK YOU A FAVOUR.";
+            quote = "DO NOT LOSE FAITH - YOU WILL GET THEM NEXT TIME.";
         else if (levelID == "alien")
             quote = "GREETINGS, EARTHLING. I AM REFERED TO AS SHA'TRA AND I COULD USE YOUR ASSISTANCE.";
         else if (levelID == "fox")
@@ -394,21 +396,17 @@ public class ClickPanels : MonoBehaviour {
 
     IEnumerator GrowFadeOutAndDie(GameObject obj, float duration)
     {
-        Renderer renderer = obj.GetComponent<Renderer>();
-        Color color = renderer.material.color;
+        obj.GetComponent<Image>().CrossFadeAlpha(0.0f, ANIMATION_TIME, false);
         Vector3 scaleUp = new Vector3(0.0025f, 0.0025f, 0f);
+        Destroy(obj, ANIMATION_TIME);
 
-        while (color.a > 0)
+        while (true)
         {
             obj.transform.localScale += scaleUp;
-            color.a -= Time.deltaTime / duration;
-            renderer.material.color = color;
 
             if (!pauseMenu.activeInHierarchy)
                 yield return null;
         }
-
-        Destroy(obj);
     }
 
 
@@ -422,12 +420,17 @@ public class ClickPanels : MonoBehaviour {
 
         //  position it where the correct panel is
         Vector3 position = new Vector3();
-        switch (correctPanel)
+        switch (correctPanel)       
         {
-            case 0: position = new Vector3(-6.5f, 2.5f, 0); break;
+            // TODO:: fix this
+            /*case 0: position = new Vector3(-6.5f, 2.5f, 0); break;
             case 1: position = new Vector3(6.5f, 2.5f, 0); break;
             case 2: position = new Vector3(-6.5f, -1.5f, 0); break;
-            case 3: position = new Vector3(6.5f, -1.5f, 0); break;
+            case 3: position = new Vector3(6.5f, -1.5f, 0); break;*/
+            case 0: position = new Vector3(-SCREEN.x/2, 3f, 0); break;
+            case 1: position = new Vector3(SCREEN.x/2, 3f, 0); break;
+            case 2: position = new Vector3(-SCREEN.x/2, -1f, 0); break;
+            case 3: position = new Vector3(SCREEN.x/2, -1f, 0); break;
         }
         itemGO.transform.position = position;
 
@@ -506,7 +509,7 @@ public class ClickPanels : MonoBehaviour {
     }
 
 
-    GameObject CreateText(string textString, Color textColor, bool onRandomLocation = true, Vector2 position = default(Vector2), int fontSize = 45)
+    GameObject CreateText(string textString, Color textColor, bool onRandomLocation = true, Vector2 position = default(Vector2), int fontSize = 60/*45*/)
     {
         GameObject textGO = new GameObject("text");
         textGO.transform.SetParent(GameObject.Find("Canvas").transform);

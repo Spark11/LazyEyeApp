@@ -1,7 +1,33 @@
 fileFormatVersion: 2
 guid: 7ead8ba5dc6d79f4da1cc2f449bde712
+timeCreated: 1468269348
+licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: USD_6x4_0
+    21300002: USD_6x4_1
+    21300004: USD_6x4_2
+    21300006: USD_6x4_3
+    21300008: USD_6x4_4
+    21300010: USD_6x4_5
+    21300012: USD_6x4_6
+    21300014: USD_6x4_7
+    21300016: USD_6x4_8
+    21300018: USD_6x4_9
+    21300020: USD_6x4_10
+    21300022: USD_6x4_11
+    21300024: USD_6x4_12
+    21300026: USD_6x4_13
+    21300028: USD_6x4_14
+    21300030: USD_6x4_15
+    21300032: USD_6x4_16
+    21300034: USD_6x4_17
+    21300036: USD_6x4_18
+    21300038: USD_6x4_19
+    21300040: USD_6x4_20
+    21300042: USD_6x4_21
+    21300044: USD_6x4_22
+    21300046: USD_6x4_23
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,267 +77,471 @@ TextureImporter:
     - name: USD_6x4_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 380
-        width: 28
-        height: 124
+        x: 0
+        y: 378
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -14, y: 63}
+        - {x: -17, y: 55}
+        - {x: -17, y: -43}
+        - {x: -14, y: -63}
+        - {x: 15, y: -63}
+        - {x: 15, y: 60}
+        - {x: 12, y: 63}
     - name: USD_6x4_1
       rect:
         serializedVersion: 2
-        x: 166
-        y: 380
-        width: 44
-        height: 124
+        x: 126
+        y: 378
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -16, y: 63}
+        - {x: -24, y: 61}
+        - {x: -25, y: 58}
+        - {x: -25, y: -48}
+        - {x: -21, y: -63}
+        - {x: 23, y: -63}
+        - {x: 23, y: 60}
+        - {x: 20, y: 63}
     - name: USD_6x4_2
       rect:
         serializedVersion: 2
-        x: 285
-        y: 380
-        width: 58
-        height: 124
+        x: 252
+        y: 378
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -30, y: 63}
+        - {x: -32, y: 43}
+        - {x: -32, y: -47}
+        - {x: -23, y: -63}
+        - {x: 30, y: -63}
+        - {x: 30, y: 54}
+        - {x: 22, y: 63}
     - name: USD_6x4_3
       rect:
         serializedVersion: 2
-        x: 404
-        y: 380
-        width: 72
-        height: 124
+        x: 378
+        y: 378
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -24, y: 63}
+        - {x: -33, y: 61}
+        - {x: -39, y: 50}
+        - {x: -39, y: -33}
+        - {x: -31, y: -63}
+        - {x: 37, y: -63}
+        - {x: 37, y: 63}
     - name: USD_6x4_4
       rect:
         serializedVersion: 2
-        x: 524
-        y: 380
-        width: 84
-        height: 124
+        x: 504
+        y: 378
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -27, y: 63}
+        - {x: -45, y: 51}
+        - {x: -45, y: -35}
+        - {x: -39, y: -63}
+        - {x: 41, y: -63}
+        - {x: 43, y: -55}
+        - {x: 43, y: 55}
+        - {x: 30, y: 63}
     - name: USD_6x4_5
       rect:
         serializedVersion: 2
-        x: 644
-        y: 380
-        width: 96
-        height: 124
+        x: 630
+        y: 378
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -28, y: 63}
+        - {x: -51, y: 35}
+        - {x: -51, y: -38}
+        - {x: -27, y: -63}
+        - {x: 16, y: -63}
+        - {x: 39, y: -53}
+        - {x: 49, y: -36}
+        - {x: 49, y: 30}
+        - {x: 37, y: 63}
     - name: USD_6x4_6
       rect:
         serializedVersion: 2
-        x: 9
-        y: 254
-        width: 106
-        height: 124
+        x: 0
+        y: 252
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -42, y: 63}
+        - {x: -56, y: 28}
+        - {x: -56, y: -30}
+        - {x: -39, y: -63}
+        - {x: 24, y: -63}
+        - {x: 54, y: -51}
+        - {x: 54, y: 31}
+        - {x: 35, y: 63}
     - name: USD_6x4_7
       rect:
         serializedVersion: 2
-        x: 132
-        y: 254
-        width: 112
-        height: 124
+        x: 126
+        y: 252
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -31, y: 63}
+        - {x: -59, y: 53}
+        - {x: -59, y: -29}
+        - {x: -36, y: -63}
+        - {x: 27, y: -63}
+        - {x: 57, y: -35}
+        - {x: 57, y: 38}
+        - {x: 35, y: 63}
     - name: USD_6x4_8
       rect:
         serializedVersion: 2
-        x: 255
-        y: 254
-        width: 118
-        height: 124
+        x: 252
+        y: 252
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -38, y: 63}
+        - {x: -62, y: 31}
+        - {x: -62, y: -23}
+        - {x: -59, y: -31}
+        - {x: -40, y: -53}
+        - {x: -26, y: -63}
+        - {x: 37, y: -63}
+        - {x: 60, y: -43}
+        - {x: 60, y: 37}
+        - {x: 45, y: 63}
     - name: USD_6x4_9
       rect:
         serializedVersion: 2
-        x: 379
-        y: 254
-        width: 122
-        height: 124
+        x: 378
+        y: 252
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -62, y: 63}
+        - {x: -63, y: 60}
+        - {x: -63, y: -57}
+        - {x: -51, y: -63}
+        - {x: 53, y: -63}
+        - {x: 62, y: -48}
+        - {x: 62, y: 30}
+        - {x: 44, y: 63}
     - name: USD_6x4_10
       rect:
         serializedVersion: 2
         x: 504
-        y: 254
-        width: 124
-        height: 124
+        y: 252
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -35, y: 63}
+        - {x: -45, y: 61}
+        - {x: -63, y: 34}
+        - {x: -63, y: -25}
+        - {x: -57, y: -49}
+        - {x: -34, y: -63}
+        - {x: 33, y: -63}
+        - {x: 63, y: -54}
+        - {x: 63, y: 45}
+        - {x: 35, y: 63}
     - name: USD_6x4_11
       rect:
         serializedVersion: 2
         x: 630
-        y: 254
-        width: 124
-        height: 124
+        y: 252
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 28, y: 63}
+        - {x: -31, y: 63}
+        - {x: -63, y: 38}
+        - {x: -63, y: -37}
+        - {x: -43, y: -63}
+        - {x: 28, y: -63}
+        - {x: 57, y: -56}
+        - {x: 63, y: -40}
+        - {x: 63, y: 26}
+        - {x: 60, y: 46}
     - name: USD_6x4_12
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
-        width: 124
-        height: 124
+        y: 126
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -53, y: 63}
+        - {x: -63, y: 49}
+        - {x: -63, y: -27}
+        - {x: -57, y: -49}
+        - {x: -25, y: -63}
+        - {x: 32, y: -63}
+        - {x: 63, y: -33}
+        - {x: 63, y: 49}
+        - {x: 36, y: 63}
     - name: USD_6x4_13
       rect:
         serializedVersion: 2
-        x: 127
-        y: 128
-        width: 122
-        height: 124
+        x: 126
+        y: 126
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -62, y: 63}
+        - {x: -63, y: 60}
+        - {x: -63, y: -57}
+        - {x: -51, y: -63}
+        - {x: 53, y: -63}
+        - {x: 62, y: -48}
+        - {x: 62, y: 30}
+        - {x: 44, y: 63}
     - name: USD_6x4_14
       rect:
         serializedVersion: 2
-        x: 255
-        y: 128
-        width: 118
-        height: 124
+        x: 252
+        y: 126
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -45, y: 63}
+        - {x: -62, y: 37}
+        - {x: -62, y: -56}
+        - {x: -45, y: -63}
+        - {x: 56, y: -63}
+        - {x: 60, y: -58}
+        - {x: 60, y: 63}
     - name: USD_6x4_15
       rect:
         serializedVersion: 2
-        x: 384
-        y: 128
-        width: 112
-        height: 124
+        x: 378
+        y: 126
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -31, y: 63}
+        - {x: -59, y: 53}
+        - {x: -59, y: -29}
+        - {x: -36, y: -63}
+        - {x: 27, y: -63}
+        - {x: 57, y: -35}
+        - {x: 57, y: 38}
+        - {x: 35, y: 63}
     - name: USD_6x4_16
       rect:
         serializedVersion: 2
-        x: 513
-        y: 128
-        width: 106
-        height: 124
+        x: 504
+        y: 126
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -28, y: 63}
+        - {x: -53, y: 57}
+        - {x: -56, y: 52}
+        - {x: -56, y: -34}
+        - {x: -42, y: -63}
+        - {x: 24, y: -63}
+        - {x: 54, y: -47}
+        - {x: 54, y: 51}
+        - {x: 40, y: 63}
     - name: USD_6x4_17
       rect:
         serializedVersion: 2
-        x: 644
-        y: 128
-        width: 96
-        height: 124
+        x: 630
+        y: 126
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 29, y: 63}
+        - {x: -28, y: 63}
+        - {x: -51, y: 35}
+        - {x: -51, y: -32}
+        - {x: -49, y: -53}
+        - {x: -29, y: -63}
+        - {x: 14, y: -63}
+        - {x: 46, y: -52}
+        - {x: 49, y: -33}
+        - {x: 49, y: 27}
+        - {x: 45, y: 36}
     - name: USD_6x4_18
       rect:
         serializedVersion: 2
-        x: 20
-        y: 2
-        width: 84
-        height: 124
+        x: 0
+        y: 0
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -28, y: 63}
+        - {x: -38, y: 59}
+        - {x: -45, y: 43}
+        - {x: -45, y: -27}
+        - {x: -36, y: -56}
+        - {x: -26, y: -63}
+        - {x: 32, y: -63}
+        - {x: 43, y: -43}
+        - {x: 43, y: 55}
+        - {x: 35, y: 63}
     - name: USD_6x4_19
       rect:
         serializedVersion: 2
-        x: 152
-        y: 2
-        width: 72
-        height: 124
+        x: 126
+        y: 0
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -37, y: 63}
+        - {x: -39, y: 45}
+        - {x: -39, y: -55}
+        - {x: -24, y: -63}
+        - {x: 33, y: -63}
+        - {x: 37, y: -58}
+        - {x: 37, y: 51}
+        - {x: 32, y: 63}
     - name: USD_6x4_20
       rect:
         serializedVersion: 2
-        x: 285
-        y: 2
-        width: 58
-        height: 124
+        x: 252
+        y: 0
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 25, y: 63}
+        - {x: -24, y: 63}
+        - {x: -32, y: 60}
+        - {x: -32, y: -50}
+        - {x: -29, y: -57}
+        - {x: -14, y: -63}
+        - {x: 23, y: -63}
+        - {x: 29, y: -59}
+        - {x: 30, y: -51}
+        - {x: 30, y: 56}
     - name: USD_6x4_21
       rect:
         serializedVersion: 2
-        x: 418
-        y: 2
-        width: 44
-        height: 124
+        x: 378
+        y: 0
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: 16, y: 63}
+        - {x: -20, y: 63}
+        - {x: -25, y: 39}
+        - {x: -25, y: -49}
+        - {x: -16, y: -63}
+        - {x: 11, y: -63}
+        - {x: 23, y: -42}
+        - {x: 23, y: 41}
+        - {x: 22, y: 61}
     - name: USD_6x4_22
       rect:
         serializedVersion: 2
-        x: 552
-        y: 2
-        width: 28
-        height: 124
+        x: 504
+        y: 0
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -16, y: 63}
+        - {x: -17, y: 45}
+        - {x: -17, y: -51}
+        - {x: -12, y: -63}
+        - {x: 9, y: -63}
+        - {x: 11, y: -62}
+        - {x: 15, y: -51}
+        - {x: 15, y: 56}
+        - {x: 14, y: 63}
     - name: USD_6x4_23
       rect:
         serializedVersion: 2
-        x: 686
-        y: 2
-        width: 12
-        height: 124
+        x: 630
+        y: 0
+        width: 126
+        height: 126
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
+      outline:
+      - - {x: -9, y: 63}
+        - {x: -9, y: -61}
+        - {x: -7, y: -63}
+        - {x: 5, y: -63}
+        - {x: 7, y: -61}
+        - {x: 7, y: 63}
     outline: []
   spritePackingTag: 
   userData: 

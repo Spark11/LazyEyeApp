@@ -25,7 +25,7 @@ public class PanelSelected : MonoBehaviour {
              
         //  initialize variables for rectangles drawing   
         height = Screen.height;
-        panelHalfDim = new Vector2(GetComponent<RectTransform>().rect.width * transform.localScale.x * 0.45f, GetComponent<RectTransform>().rect.height * transform.localScale.y * 0.45f);
+        panelHalfDim = new Vector2(GetComponent<RectTransform>().rect.width * transform.localScale.x * 0.45f , GetComponent<RectTransform>().rect.height * transform.localScale.y * 0.45f);
         panelQuarterDim = new Vector2(panelHalfDim.x * 0.5f, panelHalfDim.y * 0.5f);
 
         for (int i = 0; i < rectCount; i++)
