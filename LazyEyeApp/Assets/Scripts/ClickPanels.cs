@@ -7,14 +7,14 @@ using System.Linq;
 
 public class ClickPanels : MonoBehaviour {
 
-    private const int OPENING_STORY_TIME = 10;  // TODO:: set to 10-11
+    private const int OPENING_STORY_TIME = 11;  // TODO:: set to 10-11
     private const int LOSS_CLOSING_STORY_TIME = 6;
     private const int WIN_CLOSING_STORY_TIME = 10;
-    private const int ANIMATION_TIME = 4;
+    private const int ANIMATION_TIME = 4;       // TODO:: set to 4
     private const int MAX_LIFES = 3;
     private const int MAX_ROUNDS = 6;          // TODO:: set to 10-15
 
-    private static readonly Vector2 SCREEN = new Vector2(9, 6);
+    private static Vector2 SCREEN;
 
     private string levelID = "knight";
         
@@ -39,10 +39,25 @@ public class ClickPanels : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        //  get screen size
+        SCREEN = new Vector2(Camera.main.aspect * Camera.main.orthographicSize * 0.9f, Camera.main.orthographicSize);
+       
         //  initialize GUI objects
         pauseMenu = GameObject.Find("pauseMenu");
         pauseButton = GameObject.Find("pauseButton");
         scoreText = GameObject.Find("score").GetComponent<Text>();
+
+        //  scale elements on android devices
+#if UNITY_EDITOR
+        // do nothing - its already perfect!
+#elif UNITY_ANDROID
+        Vector3 scaleUp = new Vector3(3, 3, 1);
+        GameObject.Find("scoreHolder").transform.localScale = scaleUp;
+        GameObject.Find("pauseButton").transform.localScale = scaleUp;
+        GameObject.Find("pauseMenu").transform.localScale = scaleUp;
+        GameObject.Find("hearts").transform.localScale = scaleUp;
+        
+#endif
 
         //  set lifes and rounds
         lifes = MAX_LIFES;        
@@ -56,6 +71,10 @@ public class ClickPanels : MonoBehaviour {
         levelID = PlayerPrefs.GetString("levelID");
         SetBackground();
 
+        //  play background music
+        AudioClip music = Resources.Load<AudioClip>(levelID + "_music");
+        AudioSource.PlayClipAtPoint(music, Vector3.zero);
+        
         //  load a sprite array of character's items
         items = Resources.LoadAll<Sprite>(levelID + "_items");
 
@@ -145,7 +164,7 @@ public class ClickPanels : MonoBehaviour {
         else if (levelID == "dragon")
             plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
         else if (levelID == "princess")
-            plea2 = "I SEEM TO HAVE LOST MY " + MAX_ROUNDS + " FAVOURITE ACCESSORIES. WOULD YOU MIND FINDING THEM FOR ME?";
+            plea2 = "I HAVE LOST MY " + MAX_ROUNDS + " FAVOURITE ACCESSORIES. WOULD YOU MIND HELPING ME?";
         else if (levelID == "alien")
             plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
         else if (levelID == "fox")
@@ -320,7 +339,7 @@ public class ClickPanels : MonoBehaviour {
             itemSR.sprite = items[i];
 
             //  position it on the left or right of the character with declining height (3 items on the left and 3 on the right)
-            float x = (i==1 || i==4) ? 4.5f : 7.0f;         //  TODO:: 6.0f : 9.0f
+            float x = (i==1 || i==4) ? 0.55f * SCREEN.x : 0.75f * SCREEN.x;
             x *= (i < items.Length / 2) ? -1 : 1;
             float y = 4.0f - 3 * (i % (items.Length / 2));
             Vector3 position = new Vector3(x, y, 1);
@@ -422,15 +441,10 @@ public class ClickPanels : MonoBehaviour {
         Vector3 position = new Vector3();
         switch (correctPanel)       
         {
-            // TODO:: fix this
-            /*case 0: position = new Vector3(-6.5f, 2.5f, 0); break;
-            case 1: position = new Vector3(6.5f, 2.5f, 0); break;
-            case 2: position = new Vector3(-6.5f, -1.5f, 0); break;
-            case 3: position = new Vector3(6.5f, -1.5f, 0); break;*/
-            case 0: position = new Vector3(-SCREEN.x/2, 3f, 0); break;
-            case 1: position = new Vector3(SCREEN.x/2, 3f, 0); break;
-            case 2: position = new Vector3(-SCREEN.x/2, -1f, 0); break;
-            case 3: position = new Vector3(SCREEN.x/2, -1f, 0); break;
+            case 0: position = new Vector3(-SCREEN.x * 0.56f, 3f, 0); break;
+            case 1: position = new Vector3(SCREEN.x * 0.56f, 3f, 0); break;
+            case 2: position = new Vector3(-SCREEN.x * 0.56f, -1f, 0); break;
+            case 3: position = new Vector3(SCREEN.x * 0.56f, -1f, 0); break;
         }
         itemGO.transform.position = position;
 
@@ -509,7 +523,7 @@ public class ClickPanels : MonoBehaviour {
     }
 
 
-    GameObject CreateText(string textString, Color textColor, bool onRandomLocation = true, Vector2 position = default(Vector2), int fontSize = 60/*45*/)
+    GameObject CreateText(string textString, Color textColor, bool onRandomLocation = true, Vector2 position = default(Vector2), int fontSize = 45)
     {
         GameObject textGO = new GameObject("text");
         textGO.transform.SetParent(GameObject.Find("Canvas").transform);
@@ -523,6 +537,13 @@ public class ClickPanels : MonoBehaviour {
         text.alignment = TextAnchor.MiddleCenter;
         //text.resizeTextForBestFit = true;
         //text.horizontalOverflow = HorizontalWrapMode.Overflow;
+
+#if UNITY_EDITOR
+        // no additional adjustments
+#elif UNITY_ANDROID
+        text.fontSize = 60;
+        text.rectTransform.sizeDelta = new Vector2(700, 200);
+#endif
 
         if (onRandomLocation)
         {
