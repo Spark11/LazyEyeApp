@@ -7,14 +7,17 @@ using System.Linq;
 
 public class ClickPanels : MonoBehaviour {
 
-    private const int OPENING_STORY_TIME = 11;  // TODO:: set to 10-11
+    private const int OPENING_STORY_TIME = 2;  // TODO:: set to 10-11
     private const int LOSS_CLOSING_STORY_TIME = 6;
     private const int WIN_CLOSING_STORY_TIME = 10;
     private const int ANIMATION_TIME = 4;       // TODO:: set to 4
     private const int MAX_LIFES = 3;
-    private const int MAX_ROUNDS = 6;          // TODO:: set to 10-15
+    private const int MAX_ROUNDS = 4;          // TODO:: set to 10-15
 
     private static Vector2 SCREEN;
+
+    static AudioSource audioSource;
+    //enum SFX { CLICK, CORRECT, WRONG, VICTORY, LOSS };
 
     private string levelID = "knight";
         
@@ -72,8 +75,7 @@ public class ClickPanels : MonoBehaviour {
         SetBackground();
 
         //  play background music
-        AudioClip music = Resources.Load<AudioClip>(levelID + "_music");
-        AudioSource.PlayClipAtPoint(music, Vector3.zero);
+        SoundManager.instance.PlayBackgroundMusic(Resources.Load<AudioClip>(levelID + "_music"));
         
         //  load a sprite array of character's items
         items = Resources.LoadAll<Sprite>(levelID + "_items");
@@ -233,6 +235,9 @@ public class ClickPanels : MonoBehaviour {
 
     void ClickedCorrectPanel()
     {
+        //  play sound
+        SoundManager.instance.PlayEffect(SoundManager.SFX.CORRECT);
+
         //  update score
         score++;
         scoreText.text = score.ToString();
@@ -265,6 +270,9 @@ public class ClickPanels : MonoBehaviour {
 
     void ClickedWrongPanel()
     {
+        //  play sound
+        SoundManager.instance.PlayEffect(SoundManager.SFX.WRONG);
+
         //  minus 1 life
         lifes--;
         StartCoroutine(GrowFadeOutAndDie(hearts.transform.GetChild(lifes).gameObject, ANIMATION_TIME * 0.5f));  // start disappearing animation for heart
@@ -289,6 +297,10 @@ public class ClickPanels : MonoBehaviour {
 
     IEnumerator GameWon()
     {
+        //  play sound   
+        SoundManager.instance.StopBackgroundMusic();     
+        SoundManager.instance.PlayEffect(SoundManager.SFX.VICTORY);
+
         //  go back to main screen after the closing animation is finished
         Invoke("OnHome", WIN_CLOSING_STORY_TIME);
 
@@ -356,6 +368,10 @@ public class ClickPanels : MonoBehaviour {
     
     void GameLost()
     {
+        //  play sound
+        SoundManager.instance.StopBackgroundMusic();
+        SoundManager.instance.PlayEffect(SoundManager.SFX.LOSS);
+
         //  hide pause button
         pauseButton.SetActive(false);
 
@@ -457,7 +473,11 @@ public class ClickPanels : MonoBehaviour {
 
 
     public void OnPause()
-    {   
+    {
+        // pause music
+        SoundManager.instance.PauseResumeBackgroundMusic();
+        SoundManager.instance.PlayEffect(SoundManager.SFX.CLICK);
+        
         //  pause game objects     
         Time.timeScale = 0.0f;
         
@@ -488,6 +508,10 @@ public class ClickPanels : MonoBehaviour {
 
     public void OnResume()
     {
+        // unpause music
+        SoundManager.instance.PauseResumeBackgroundMusic();
+        SoundManager.instance.PlayEffect(SoundManager.SFX.CLICK);
+
         //  unpause game objects     
         Time.timeScale = 1.0f;
 
@@ -507,6 +531,10 @@ public class ClickPanels : MonoBehaviour {
 
     public void OnHome()
     {
+        // stop music
+        SoundManager.instance.StopBackgroundMusic();
+        SoundManager.instance.PlayEffect(SoundManager.SFX.CLICK);
+
         //  unpause game objects     
         Time.timeScale = 1.0f;
 
@@ -516,10 +544,26 @@ public class ClickPanels : MonoBehaviour {
 
     public void OnRestart()
     {
+        //  stop music
+        SoundManager.instance.StopBackgroundMusic();
+        SoundManager.instance.PlayEffect(SoundManager.SFX.CLICK);
+        
         //  unpause game objects     
         Time.timeScale = 1.0f;
 
         SceneManager.LoadScene("level");
+    }
+
+
+    public void OnBackgroundMusicToggle()
+    {
+        SoundManager.instance.ToggleBackgroundMusic();
+    }
+
+
+    public void OnEffectsToggle()
+    {
+        SoundManager.instance.ToggleEffects();
     }
 
 
