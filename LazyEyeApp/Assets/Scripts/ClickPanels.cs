@@ -50,6 +50,9 @@ public class ClickPanels : MonoBehaviour {
         pauseButton = GameObject.Find("pauseButton");
         scoreText = GameObject.Find("score").GetComponent<Text>();
 
+        //  init sound buttons
+        SoundManager.instance.InitSoundButtons();
+
         //  scale elements on android devices
 #if UNITY_EDITOR
         // do nothing - its already perfect!

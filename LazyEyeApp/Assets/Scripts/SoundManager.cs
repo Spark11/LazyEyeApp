@@ -30,13 +30,17 @@ public class SoundManager : MonoBehaviour {
         musicOff = PlayerPrefs.GetInt("music") == 1;
         sfxOff = PlayerPrefs.GetInt("effects") == 1;
         backgroundSource.volume = musicOff ? 0 : 1;
+    }
 
+
+    //  initialize sound buttons with correct references and sprites
+    public void InitSoundButtons()
+    {
         musicButton = GameObject.Find("musicButton");
         sfxButton = GameObject.Find("sfxButton");
 
         musicButton.GetComponent<Image>().sprite = musicOff ? Resources.Load<Sprite>("musicOff") : Resources.Load<Sprite>("musicOn");
         sfxButton.GetComponent<Image>().sprite = sfxOff ? Resources.Load<Sprite>("sfxOff") : Resources.Load<Sprite>("sfxOn");
-        //GameObject.Find("sfxButton").GetComponent<Image>().sprite = Resources.Load<Sprite>("SoundOff");
     }
 
 
