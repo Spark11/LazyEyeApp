@@ -10,7 +10,7 @@ public class SoundManager : MonoBehaviour {
     public static SoundManager instance = null;
     public enum SFX { CLICK, CORRECT, WRONG, VICTORY, LOSS };
 
-    private static AudioClip[] sfxClips = { Resources.Load<AudioClip>("sfx_click"), Resources.Load<AudioClip>("sfx_correct"), Resources.Load<AudioClip>("sfx_wrong"), Resources.Load<AudioClip>("sfx_victory"), Resources.Load<AudioClip>("sfx_loss"), };
+    private static AudioClip[] sfxClips = { Resources.Load<AudioClip>("sfx_click"), Resources.Load<AudioClip>("sfx_correct"), Resources.Load<AudioClip>("sfx_wrong"), Resources.Load<AudioClip>("sfx_victory"), Resources.Load<AudioClip>("sfx_loss") };
 
     private bool musicOff;
     private bool sfxOff;
@@ -30,6 +30,15 @@ public class SoundManager : MonoBehaviour {
         musicOff = PlayerPrefs.GetInt("music") == 1;
         sfxOff = PlayerPrefs.GetInt("effects") == 1;
         backgroundSource.volume = musicOff ? 0 : 1;
+                
+        if(sfxClips[0] == null)
+        {
+            sfxClips[0] = Resources.Load<AudioClip>("sfx_click");
+            sfxClips[1] = Resources.Load<AudioClip>("sfx_correct");
+            sfxClips[2] = Resources.Load<AudioClip>("sfx_wrong");
+            sfxClips[3] = Resources.Load<AudioClip>("sfx_victory");
+            sfxClips[4] = Resources.Load<AudioClip>("sfx_loss");
+        }
     }
 
 
