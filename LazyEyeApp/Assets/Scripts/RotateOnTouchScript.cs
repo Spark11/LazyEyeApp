@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RotateOnTouchScript : MonoBehaviour {
 
-    private int speed;
+    private int speed = 150;
 
     void Start()
     {

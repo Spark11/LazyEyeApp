@@ -113,7 +113,7 @@ public class ClickPanels : MonoBehaviour {
         pauseMenu.SetActive(false);
 
         //  show opening story
-        StartCoroutine(OpeningStory(OPENING_STORY_TIME));
+        coroutine = StartCoroutine(OpeningStory(OPENING_STORY_TIME));
     }
 
 
@@ -433,18 +433,21 @@ public class ClickPanels : MonoBehaviour {
 
 
     IEnumerator GrowFadeOutAndDie(GameObject obj, float duration)
-    {
-        obj.GetComponent<Image>().CrossFadeAlpha(0.0f, ANIMATION_TIME, false);
+    {        
+        float currentTime = 0.0f;
         Vector3 scaleUp = new Vector3(0.0025f, 0.0025f, 0f);
-        Destroy(obj, ANIMATION_TIME);
+        obj.GetComponent<Image>().CrossFadeAlpha(0.0f, duration, false);
 
-        while (true)
+        while (currentTime <= duration)
         {
-            obj.transform.localScale += scaleUp;
-
             if (!pauseMenu.activeInHierarchy)
                 yield return null;
+
+            obj.transform.localScale += scaleUp;
+            currentTime += Time.deltaTime;
         }
+
+        Destroy(obj);
     }
 
 
