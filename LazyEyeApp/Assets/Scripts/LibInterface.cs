@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System;
 using System.Threading;
+using UnityEngine.UI;
 
 /**-----------------------------------------------------
 * THREAD SAFE READ/WRITE BUFFER - 
@@ -91,8 +92,9 @@ public class ThreadSafeAccess
 *-----------------------------------------------------*/
 public class LibInterface : MonoBehaviour {
 
-	//private GameObject playerDataGO;
-	//private PlayerData playerData;
+    //private GameObject playerDataGO;
+    //private PlayerData playerData;
+    private Text txtEyeDistance; 
 
     //--------------------------------------------------
     // STRUCT TO HOLD STARTUP STATUS
@@ -340,9 +342,10 @@ public class LibInterface : MonoBehaviour {
     // START - INVOKED BY UNITY AT START-UP
     //-----------------------------------------------------
 	void Start () 
-    {       
-		//playerDataGO = GameObject.Find("PlayerData");
-		//playerData = playerDataGO.GetComponent<PlayerData>();
+    {
+        //playerDataGO = GameObject.Find("PlayerData");
+        //playerData = playerDataGO.GetComponent<PlayerData>();
+        txtEyeDistance = GameObject.Find("eyeDistance").GetComponent<Text>();
 
         // symbol type either - ConcentricCircles or SquareCircleTriangle or None
         string defaultRightEyeFile = "haarcascade_lefteye_2splits.xml";
@@ -473,7 +476,8 @@ public class LibInterface : MonoBehaviour {
         }
 
         // output the update results to screen
-        GUI.Label(new Rect(5, 0, Screen.width, Screen.height), "Startup code " + (startup_status)mStartUpCode);
+        txtEyeDistance.text = filtDistance.ToString();
+        /*GUI.Label(new Rect(5, 0, Screen.width, Screen.height), "Startup code " + (startup_status)mStartUpCode);
         GUI.Label(new Rect(5, 20, Screen.width, Screen.height), "Frame id: " + update.mFrameId);
         GUI.Label(new Rect(5, 40, Screen.width, Screen.height), "Update Status: " + status);
         GUI.Label(new Rect(5, 60, Screen.width, Screen.height), "Eye Raw distance: " + rawDistance);
@@ -484,7 +488,7 @@ public class LibInterface : MonoBehaviour {
         GUI.Label(new Rect(5, 160, Screen.width, Screen.height), "Accel Sensitivity: " + mConfig.accelSensitivity);
         GUI.Label(new Rect(5, 180, Screen.width, Screen.height), "Margin L/R/T/B W: " + mConfig.marginLeft + " " + mConfig.marginRight + " " + mConfig.marginTop + " " + mConfig.marginBottom + " " + mConfig.marginWeight);        
         GUI.Label(new Rect(5, 200, Screen.width, Screen.height), "Detection Symbol: " + mConfig.symbolType);
-        GUI.Label(new Rect(5, 220, Screen.width, Screen.height), "Search Mode: " + mConfig.searchMode);
+        GUI.Label(new Rect(5, 220, Screen.width, Screen.height), "Search Mode: " + mConfig.searchMode);*/
 
         if (mDoUpdate)
         {
@@ -494,17 +498,17 @@ public class LibInterface : MonoBehaviour {
                 l(update);
             }
 
-            if (GUI.Button(new Rect(20, 240, 400, 100), "Stop Updating"))
+            /*if (GUI.Button(new Rect(20, 240, 400, 100), "Stop Updating"))
             {
                 pauseLibInterface();
-            }
+            }*/
         }
         else
         {
-            if (GUI.Button(new Rect(20, 240, 400, 100), "Start Updating"))
+            /*if (GUI.Button(new Rect(20, 240, 400, 100), "Start Updating"))
             {
                 resumeLibInterface();
-            }
+            }*/
         }
     }
 

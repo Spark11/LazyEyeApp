@@ -7,21 +7,21 @@ using System.Linq;
 
 public class ClickPanels : MonoBehaviour {
 
-    private const int OPENING_STORY_TIME = 2;  // TODO:: set to 10-11
+    private const int OPENING_STORY_TIME = 11;  // TODO:: set to 10-11
     private const int LOSS_CLOSING_STORY_TIME = 6;
     private const int WIN_CLOSING_STORY_TIME = 10;
     private const int ANIMATION_TIME = 4;       // TODO:: set to 4
     private const int MAX_LIFES = 3;
-    private const int MAX_ROUNDS = 4;          // TODO:: set to 10-15
+    private const int MAX_ROUNDS = 6;          // TODO:: set to 10-15
 
     private static Vector2 SCREEN;
 
     static AudioSource audioSource;
-    //enum SFX { CLICK, CORRECT, WRONG, VICTORY, LOSS };
 
     private string levelID = "knight";
         
     private Text scoreText;
+    private Text eyeDistText;
     private GameObject pauseButton;
     private GameObject pauseMenu;
     private GameObject hearts;
@@ -49,6 +49,7 @@ public class ClickPanels : MonoBehaviour {
         pauseMenu = GameObject.Find("pauseMenu");
         pauseButton = GameObject.Find("pauseButton");
         scoreText = GameObject.Find("score").GetComponent<Text>();
+        eyeDistText = GameObject.Find("eyeDistance").GetComponent<Text>();
 
         //  init sound buttons
         SoundManager.instance.InitSoundButtons();
@@ -59,10 +60,10 @@ public class ClickPanels : MonoBehaviour {
 #elif UNITY_ANDROID
         Vector3 scaleUp = new Vector3(3, 3, 1);
         GameObject.Find("scoreHolder").transform.localScale = scaleUp;
-        GameObject.Find("pauseButton").transform.localScale = scaleUp;
-        GameObject.Find("pauseMenu").transform.localScale = scaleUp;
+        pauseButton.transform.localScale = scaleUp;
+        pauseMenu.transform.localScale = scaleUp;
         GameObject.Find("hearts").transform.localScale = scaleUp;
-        
+        eyeDistText.transform.localScale = scaleUp;        
 #endif
 
         //  set lifes and rounds
@@ -103,6 +104,7 @@ public class ClickPanels : MonoBehaviour {
         
         //  change font color of text fields
         scoreText.color = fontColor;                                                //  score label
+        eyeDistText.color = fontColor;                                              //  eye distance label
         pauseMenu.transform.GetChild(0).GetComponent<Text>().color = fontColor;     //  pause label
 
         //  hide panels
@@ -152,7 +154,7 @@ public class ClickPanels : MonoBehaviour {
         else if (levelID == "penguin")
             plea = "HEY THERE! I AM TUX AND I REALLY NEED YOUR HELP FOR A FEW MINUTES.";
         else if (levelID == "girl")
-            plea = "HI! I AM SARA AND I WONDER IF YOU COULD HELP ME WITH SOMETHING.";
+            plea = "HI! I AM SARA AND I WONDER IF YOU WANT TO PLAY A GAME WITH ME.";
         else if (levelID == "droid")
             plea = "HELLO, HUMAN. I AM CALLED R3D6 AND I COULD DO WITH SOME HELP, PLEASE.";
 
@@ -167,19 +169,19 @@ public class ClickPanels : MonoBehaviour {
         if (levelID == "knight")
             plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
         else if (levelID == "dragon")
-            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+            plea2 = "SOME THIEVES HAVE STOLEN MY " + MAX_ROUNDS + " TREASURES WHILE I WAS ASLEEP. COULD YOU FIND THEM FOR ME?";
         else if (levelID == "princess")
             plea2 = "I HAVE LOST MY " + MAX_ROUNDS + " FAVOURITE ACCESSORIES. WOULD YOU MIND HELPING ME?";
         else if (levelID == "alien")
-            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+            plea2 = "I HAVE CRASHED WITH MY SPACESHIP ON YOUR PLANET AND LOST MY EQUIPMENT OF " + MAX_ROUNDS + " ITEMS. HELP ME?";
         else if (levelID == "fox")
-            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+            plea2 = "I AM STARVING AND THERE ARE " + MAX_ROUNDS + " FRUITS IN THIS FOREST. LET'S FIND THEM, OK?";
         else if (levelID == "penguin")
-            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+            plea2 = "I AM TRYING TO CATCH " + MAX_ROUNDS + " FISHES FROM THE LAKE. DO YOU WANT TO GO FISHING WITH ME?";
         else if (levelID == "girl")
-            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+            plea2 = "I HID MY " + MAX_ROUNDS + " FAVOURITE TOYS AROUND THIS TREEHOUSE. SEE IF YOU CAN FIND THEM ALL.";
         else if (levelID == "droid")
-            plea2 = "I LOST MY " + MAX_ROUNDS + " BEST WEAPONS. COULD YOU HELP ME FIND THEM?";
+            plea2 = "I ENCOUNTERED A PROBLEM WITH " + MAX_ROUNDS + " OF MY PARTS. COULD YOU FIND SOME NEW ONES FOR ME?";
 
         Destroy(CreateText(plea2, fontColor, false, new Vector2(0, Screen.height * 0.25f), 30), duration * 0.5f);
 
@@ -319,19 +321,19 @@ public class ClickPanels : MonoBehaviour {
         if (levelID == "knight")
             quote = "YES, YOU DID IT! YOU ARE A TRUE NOBLE HERO!";
         else if (levelID == "dragon")
-            quote = "ROAR! THEY CALL ME BALERION AND I HEARD YOU ARE GOOD AT FINDING STUFF.";
+            quote = "ROAR! THE RUMOURS WERE TRUE, YOU REALLY ARE THE BEST AT THIS.";
         else if (levelID == "princess")
             quote = "YES, YOU MADE IT! I AM MUCH OBLIGED TO YOU FOR YOUR KINDNESS.";
         else if (levelID == "alien")
-            quote = "GREETINGS, EARTHLING. I AM REFERED TO AS SHA'TRA AND I COULD USE YOUR ASSISTANCE.";
+            quote = "SUCCESS! THANKS TO YOU I CAN FLY BACK TO MY PLANET NOW. YOU HAVE MY GRATITUDE.";
         else if (levelID == "fox")
-            quote = "HIYA! KIT THE FOX HERE, NICE TO MEET YOU. CAN YOU GIVE ME A HAND WITH SOMETHING?";
+            quote = "MMM, THAT WAS DELICIOUS! THANKS A MILLION, FRIEND!";
         else if (levelID == "penguin")
-            quote = "HEY THERE! I AM TUX AND I REALLY NEED YOUR HELP FOR A FEW MINUTES.";
+            quote = "NICE CATCH, BUDDY! I THINK WE GOT THEM ALL.";
         else if (levelID == "girl")
-            quote = "HI! I AM SARA AND I WONDER IF YOU COULD HELP ME WITH SOMETHING.";
+            quote = "YES, YOU WIN!! MY HIDING SPOTS WERE NO MATCH FOR YOUR KEEN EYE.";
         else if (levelID == "droid")
-            quote = "HELLO, HUMAN. I AM CALLED R3D6 AND I COULD DO WITH SOME HELP, PLEASE.";
+            quote = "MISSION ACCOMPLISHED. I AM AS GOOD AS NEW THANKS TO YOUR GUIDANCE. THANK YOU.";
 
         Destroy(CreateText(quote, fontColor, false, new Vector2(0, Screen.height * 0.25f), 30), WIN_CLOSING_STORY_TIME);
 
@@ -387,19 +389,19 @@ public class ClickPanels : MonoBehaviour {
         if (levelID == "knight")
             quote = "GOOD GAME, CHAMP. BETTER LUCK NEXT TIME!";
         else if (levelID == "dragon")
-            quote = "ROAR! THEY CALL ME BALERION AND I HEARD YOU ARE GOOD AT FINDING STUFF.";
+            quote = "ROAR! THEY GOT AWAY THIS TIME BUT NEXT TIME WE WILL GET THEM!";
         else if (levelID == "princess")
             quote = "DO NOT LOSE FAITH - YOU WILL GET THEM NEXT TIME.";
         else if (levelID == "alien")
-            quote = "GREETINGS, EARTHLING. I AM REFERED TO AS SHA'TRA AND I COULD USE YOUR ASSISTANCE.";
+            quote = "IT LOOKS LIKE I WOULD BE SPENDING SOME TIME ON THIS PLANET. BETTER LUCK NEXT TIME!";
         else if (levelID == "fox")
-            quote = "HIYA! KIT THE FOX HERE, NICE TO MEET YOU. CAN YOU GIVE ME A HAND WITH SOMETHING?";
+            quote = "OH WELL, THERE ARE OTHER FORESTS, RIGHT?! UNTIL WE MEET AGAIN, DUDE!";
         else if (levelID == "penguin")
-            quote = "HEY THERE! I AM TUX AND I REALLY NEED YOUR HELP FOR A FEW MINUTES.";
+            quote = "LOOKS LIKE THE FISH GOT THE BETTER OF YOU THIS TIME, BUDDY. TRY AGAIN!";
         else if (levelID == "girl")
-            quote = "HI! I AM SARA AND I WONDER IF YOU COULD HELP ME WITH SOMETHING.";
+            quote = "VICTORY FOR ME, YAY! DON'T WORRY, YOU WILL WIN NEXT TIME FOR SURE!";
         else if (levelID == "droid")
-            quote = "HELLO, HUMAN. I AM CALLED R3D6 AND I COULD DO WITH SOME HELP, PLEASE.";
+            quote = "MALFUNCTION! SYSTEM NEEDS REBOOTING. PLEASE TRY AGAIN, HUMAN, I BELIEVE IN YOU.";
 
         Destroy(CreateText(quote, fontColor, false, new Vector2(0, Screen.height * 0.25f), 30), LOSS_CLOSING_STORY_TIME);
 
@@ -581,18 +583,17 @@ public class ClickPanels : MonoBehaviour {
         Text text = textGO.AddComponent<Text>();
         text.text = textString;        
         text.font = Resources.Load<Font>("JazzCreateBubble");
-        text.fontSize = fontSize;
         text.color = textColor;
-        text.rectTransform.sizeDelta = new Vector2(350, 100);
         text.alignment = TextAnchor.MiddleCenter;
         //text.resizeTextForBestFit = true;
         //text.horizontalOverflow = HorizontalWrapMode.Overflow;
 
 #if UNITY_EDITOR
-        // no additional adjustments
+        text.fontSize = fontSize;
+        text.rectTransform.sizeDelta = new Vector2(450, 100);
 #elif UNITY_ANDROID
         text.fontSize = 60;
-        text.rectTransform.sizeDelta = new Vector2(700, 200);
+        text.rectTransform.sizeDelta = new Vector2(800, 200);
 #endif
 
         if (onRandomLocation)
