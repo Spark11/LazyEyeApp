@@ -8,9 +8,9 @@ public class SoundManager : MonoBehaviour {
     public AudioSource sfxSource;
 
     public static SoundManager instance = null;
-    public enum SFX { CLICK, CORRECT, WRONG, VICTORY, LOSS };
+    public enum SFX { CLICK, CORRECT, WRONG, VICTORY, LOSS, SCROLL };
 
-    private static AudioClip[] sfxClips = { Resources.Load<AudioClip>("sfx_click"), Resources.Load<AudioClip>("sfx_correct"), Resources.Load<AudioClip>("sfx_wrong"), Resources.Load<AudioClip>("sfx_victory"), Resources.Load<AudioClip>("sfx_loss") };
+    private static AudioClip[] sfxClips = { Resources.Load<AudioClip>("sfx_click"), Resources.Load<AudioClip>("sfx_correct"), Resources.Load<AudioClip>("sfx_wrong"), Resources.Load<AudioClip>("sfx_victory"), Resources.Load<AudioClip>("sfx_loss"), Resources.Load<AudioClip>("sfx_scroll") };
 
     private bool musicOff;
     private bool sfxOff;
@@ -38,6 +38,7 @@ public class SoundManager : MonoBehaviour {
             sfxClips[2] = Resources.Load<AudioClip>("sfx_wrong");
             sfxClips[3] = Resources.Load<AudioClip>("sfx_victory");
             sfxClips[4] = Resources.Load<AudioClip>("sfx_loss");
+            sfxClips[4] = Resources.Load<AudioClip>("sfx_scroll");
         }
     }
 

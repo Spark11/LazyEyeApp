@@ -34,12 +34,18 @@ public class RotateOnTouchScript : MonoBehaviour {
 
 #if UNITY_EDITOR        
         if (Input.GetMouseButton(0))
+        {
+            SoundManager.instance.PlayEffect(SoundManager.SFX.SCROLL);
             foreach (Transform child in transform)
                 child.RotateAround(Vector3.zero, Vector3.up, Input.GetAxis("Mouse X") * speed * Time.deltaTime);
+        }
 #elif UNITY_ANDROID
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            SoundManager.instance.PlayEffect(SoundManager.SFX.SCROLL);
             foreach (Transform child in transform)
                 child.RotateAround(Vector3.zero, Vector3.up, Input.GetTouch(0).deltaPosition.x * speed * Time.deltaTime);        
+        }
 #endif
 
     }
