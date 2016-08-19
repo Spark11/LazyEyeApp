@@ -4,6 +4,7 @@ using System.Collections;
 public class RotateOnTouchScript : MonoBehaviour {
 
     private int speed = 150;
+    private float skyboxRotation;
 
     void Start()
     {
@@ -18,6 +19,9 @@ public class RotateOnTouchScript : MonoBehaviour {
         SoundManager.instance.InitSoundButtons();
         SoundManager.instance.PlayBackgroundMusic(Resources.Load<AudioClip>("main_music"));
 
+        //  hide "Loading..." text
+        //GameObject.Find("loading").SetActive(false);
+        
         //  scale elements on android devices
 #if UNITY_EDITOR
         // do nothing - its already perfect!
@@ -27,11 +31,16 @@ public class RotateOnTouchScript : MonoBehaviour {
         
 #endif
     }
-
-    // rotate planets on mouse/finger move
+        
     void Update()
     {
 
+        //  rotate skybox permanently
+        skyboxRotation += Time.deltaTime;
+        skyboxRotation %= 360;
+        RenderSettings.skybox.SetFloat("_Rotation", skyboxRotation);
+
+        // rotate planets on mouse/finger move
 #if UNITY_EDITOR        
         if (Input.GetMouseButton(0))
         {
