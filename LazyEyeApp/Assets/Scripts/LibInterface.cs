@@ -94,7 +94,7 @@ public class LibInterface : MonoBehaviour {
 
     //private GameObject playerDataGO;
     //private PlayerData playerData;
-    private Text txtEyeDistance; 
+    ClickPanels otherScript;
 
     //--------------------------------------------------
     // STRUCT TO HOLD STARTUP STATUS
@@ -345,7 +345,7 @@ public class LibInterface : MonoBehaviour {
     {
         //playerDataGO = GameObject.Find("PlayerData");
         //playerData = playerDataGO.GetComponent<PlayerData>();
-        txtEyeDistance = GameObject.Find("eyeDistance").GetComponent<Text>();
+        otherScript = (ClickPanels)GameObject.Find("Panels").GetComponent(typeof(ClickPanels));
 
         // symbol type either - ConcentricCircles or SquareCircleTriangle or None
         string defaultRightEyeFile = "haarcascade_lefteye_2splits.xml";
@@ -415,13 +415,14 @@ public class LibInterface : MonoBehaviour {
 
         // Start the LibInterface
         startLibInterface(config);
-		/*if (playerData.CameraTracking == true) 
+        resumeLibInterface();
+        /*if (playerData.CameraTracking == true) 
 		{
 			resumeLibInterface ();
 		} else {
 			pauseLibInterface();
 		}*/
-	}
+    }
 
     //-----------------------------------------------------
     // CALLED WHEN THE GAME IS PAUSED AND RESUMED
@@ -476,7 +477,8 @@ public class LibInterface : MonoBehaviour {
         }
 
         // output the update results to screen
-        txtEyeDistance.text = filtDistance.ToString();
+        otherScript.SetEyeDistance(filtDistance);
+        //GUI.Label(new Rect(5, 80, Screen.width, Screen.height), "Eye Filt. distance: " + filtDistance);
         /*GUI.Label(new Rect(5, 0, Screen.width, Screen.height), "Startup code " + (startup_status)mStartUpCode);
         GUI.Label(new Rect(5, 20, Screen.width, Screen.height), "Frame id: " + update.mFrameId);
         GUI.Label(new Rect(5, 40, Screen.width, Screen.height), "Update Status: " + status);

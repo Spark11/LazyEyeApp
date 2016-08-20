@@ -609,5 +609,11 @@ public class ClickPanels : MonoBehaviour {
 
         return textGO;
     }
+
+
+    public void SetEyeDistance(double distance)
+    {
+        eyeDistText.text = distance.ToString();
+    }
     
 }
